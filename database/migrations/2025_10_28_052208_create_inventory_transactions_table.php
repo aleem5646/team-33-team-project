@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('userId')->nullable()->constrained('users', 'userId')->onDelete('set null');
             $table->integer('quantity');
             $table->string('transaction_type');
+            $table->timestamps();
         });
     }
 
