@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name')->nullable(); 
             $table->string('value')->nullable(); 
             $table->integer('count'); 
+            $table->string('sku')->unique()->nullable();
+            $table->decimal('price', 8, 2)->nullable();
             $table->timestamps();
         });
     }
@@ -24,7 +26,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+public function down(): void
     {
         Schema::dropIfExists('product_variants');
     }

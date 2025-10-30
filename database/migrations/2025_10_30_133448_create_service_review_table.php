@@ -9,15 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+public function up(): void
     {
-        Schema::create('inventory_transactions', function (Blueprint $table) {
-            $table->id('transactionId');
-            $table->foreignId('product_variantId')->constrained('product_variants', 'product_variantId');
+        Schema::create('service_review', function (Blueprint $table) {
+            $table->id('service_reviewId');
             $table->foreignId('userId')->nullable()->constrained('users', 'userId')->onDelete('set null');
-            $table->integer('quantity');
-            $table->string('transaction_type');
-            $table->string('reference')->nullable();
+            $table->unsignedTinyInteger('rating');
+            $table->text('review')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventory_transactions');
+        Schema::dropIfExists('service_review');
     }
 };
