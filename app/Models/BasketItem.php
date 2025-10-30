@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class BasketItem extends Model
 {
     use HasFactory;
+    protected $table = 'basket_items';
     protected $primaryKey = 'basket_itemId';
     protected $fillable = [
         'basketId',

@@ -9,9 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InventoryTransaction extends Model
 {
     use HasFactory;
-
+    protected $table = 'inventory_transactions';
     protected $primaryKey = 'transactionId';
-
     protected $fillable = [
         'product_variantId',
         'userId',

@@ -25,6 +25,7 @@ class User extends Authenticatable
 
     protected $hidden = [
         'hashed_password',
+        'remember_token',
     ];
     protected function casts(): array
     {
@@ -33,7 +34,7 @@ class User extends Authenticatable
             'hashed_password' => 'hashed',
         ];
     }
-    // Relationships
+// Relationships
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class, 'userId', 'userId');
@@ -49,6 +50,10 @@ class User extends Authenticatable
     public function reviews(): HasMany
     {
          return $this->hasMany(Review::class, 'userId', 'userId');
+    }
+    public function serviceReviews(): HasMany
+    {
+         return $this->hasMany(ServiceReview::class, 'userId', 'userId');
     }
     public function returns(): HasMany
     {

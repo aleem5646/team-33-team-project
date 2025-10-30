@@ -13,9 +13,11 @@ class ProductVariant extends Model
     protected $primaryKey = 'product_variantId';
     protected $fillable = [
         'productId',
+        'count',
         'name',
         'value',
-        'count',
+        'sku',
+        'price',
     ];
 
     // Relationship

@@ -9,10 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Filter extends Model
 {
     use HasFactory;
-
     protected $primaryKey = 'filterId';
     public $timestamps = false;
-
     protected $fillable = [
         'name',
     ];
@@ -20,6 +18,6 @@ class Filter extends Model
     // Relationship
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'product_filter_pivot', 'filterId', 'productId');
+        return $this->belongsToMany(Product::class, 'product_filter', 'filterId', 'productId');
     }
 }

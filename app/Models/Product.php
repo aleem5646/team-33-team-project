@@ -35,6 +35,6 @@ class Product extends Model
     }
     public function filters(): BelongsToMany
     {
-        return $this->belongsToMany(Filter::class, 'product_filter_pivot', 'productId', 'filterId');
+        return $this->belongsToMany(Filter::class, 'product_filter', 'productId', 'filterId');
     }
 }
