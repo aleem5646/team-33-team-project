@@ -13,6 +13,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $primaryKey = 'userId';
+    protected $table = "users";
 
     protected $fillable = [
         'first_name',
@@ -34,6 +35,12 @@ class User extends Authenticatable
             'hashed_password' => 'hashed',
         ];
     }
+
+    public function getAuthPassword()
+    {
+        return $this->hashed_password;
+    }
+
 // Relationships
     public function orders(): HasMany
     {
