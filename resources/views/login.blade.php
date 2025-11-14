@@ -31,6 +31,8 @@
 
         <form action="{{ route('login.post') }}" method="POST" class="space-y-6">
             @csrf
+
+            <div id="login-error" class="text-red-600 text-sm -my-2 text-center" role="alert"></div>
             
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
