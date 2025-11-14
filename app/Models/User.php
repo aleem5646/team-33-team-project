@@ -7,12 +7,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
     protected $primaryKey = 'userId';
+    protected $table = "users";
 
     protected $fillable = [
         'first_name',
@@ -34,6 +36,12 @@ class User extends Authenticatable
             'hashed_password' => 'hashed',
         ];
     }
+
+    public function getAuthPassword()
+    {
+        return $this->hashed_password;
+    }
+
 // Relationships
     public function orders(): HasMany
     {

@@ -16,6 +16,7 @@ public function up(): void
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('hashed_password');
             $table->string('phone')->nullable();
             $table->enum('user_type', ['customer', 'admin'])->default('customer');
