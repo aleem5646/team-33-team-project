@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReturnController;
-use App\Http\Controllers\ProductController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
@@ -77,6 +76,3 @@ Route::group(['middleware'=>['auth','verified']], function (){
 
 Route::get('/returns', [ReturnController::class, 'showForm'])->name('returns.form');
 Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.submit');
-
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-Route::post('/cart/add', [ProductController::class, 'addToCart'])->name('cart.add');
