@@ -76,3 +76,6 @@ Route::group(['middleware'=>['auth','verified']], function (){
 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::post('/cart/add', [ProductController::class, 'addToCart'])->name('cart.add');
+Route::get("/product-detail", function () {
+    return view("pages.product-detail");
+});

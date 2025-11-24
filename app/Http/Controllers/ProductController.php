@@ -8,7 +8,7 @@ class ProductController extends Controller
 {
     public function show($id)
     {
-        return view('product-detail');
+        return view('pages.product-detail');
     }
 
     public function addToCart(Request $request)
