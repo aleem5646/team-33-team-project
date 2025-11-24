@@ -12,7 +12,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/', function () {
+Route::get('/contact', function () {
     return view('pages.auth.contact');
 })->name('contact');
 
