@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.customer-layout')
 @section('title','2FA Verification')
 
 @section('content')

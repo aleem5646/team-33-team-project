@@ -3,18 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ReturnController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
+use App\Http\Controllers\ServiceReviewController;
 
 Route::get('/', function () {
-    return view('pages.auth.home');
+    return view('home');
 })->name('home');
-
-Route::get('/contact', function () {
-    return view('pages.auth.contact');
-})->name('contact');
 
 Route::get('login', [AuthManager::class, 'login'])->name('login');
 Route::post('login', [AuthManager::class, 'loginPost'])->name('login.post');
@@ -67,6 +63,11 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('success', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+Route::get('/service-review', function () {
+    return view('service-review'); })->name('service-review.op');
+Route::post('/service-review', [ServiceReviewController::class, 'store']) ->name('service-review.sub');
+
+
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware(['auth', 'verified']);
 # Add any routes that a logged in user can access in 
 # this route group
@@ -78,5 +79,3 @@ Route::group(['middleware'=>['auth','verified']], function (){
 
 });
 
-Route::get('/returns', [ReturnController::class, 'showForm'])->name('returns.form');
-Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.submit');

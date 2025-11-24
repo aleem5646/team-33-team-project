@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.customer-layout')
 @section('title','Set New Password')
 
 @section('content')

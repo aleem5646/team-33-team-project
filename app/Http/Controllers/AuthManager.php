@@ -22,7 +22,7 @@ class AuthManager extends Controller
         if (Auth::check()){
             return redirect(route('home'));
         }
-        return view('login');
+        return view('pages.auth.login');
     }
 
     function registration(){
@@ -30,7 +30,7 @@ class AuthManager extends Controller
         if (Auth::check()){
             return redirect(route('home'));
         }
-        return view('registration');
+        return view('pages.auth.registration');
 
         
     }
