@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home </title>
 
-    <!-- Inline CSS Styles -->
     <style>
         * {
             box-sizing: border-box;
@@ -28,7 +27,6 @@
             color: inherit;
         }
 
-        /* Main Content Styles */
         .main-content {
             padding: 40px 0;
             font-family: sans-serif;
@@ -44,7 +42,7 @@
             flex: 1;
             background-color: #f9f9f9;
             text-align: center;
-            overflow: hidden;
+            overflow: hidden; 
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
@@ -55,11 +53,16 @@
             display: block;
             object-fit: cover; 
             min-height: 250px;
+            transition: transform 0.3s ease; 
         }
 
         .product-caption {
             padding: 15px;
             font-weight: bold;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05); 
         }
 
         .shop-button {
@@ -69,7 +72,7 @@
 
         .shop-button a {
             display: inline-block;
-            background-color: #92b09a; /* Earthy Green */
+            background-color: #92b09a; 
             color: white;
             padding: 12px 30px;
             border-radius: 25px;
