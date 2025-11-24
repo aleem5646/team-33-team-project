@@ -100,8 +100,8 @@
 <script>
     const rating = document.getElementById('star-rating');
     const stars = Array.from(rating.querySelectorAll('.star'));
-    const radios = Array.from(rating.querySelectorAll('input[name="rating"]'));
-    let lockedRating = radios.find(r => r.checked)?.value || 0;
+    const svals = Array.from(rating.querySelectorAll('input[name="rating"]'));
+    let lockedRating = svals.find(r => r.checked)?.value || 0;
     function paintStars(value) {
         stars.forEach(star => {
             const starVal = Number(star.dataset.star);
@@ -122,8 +122,8 @@
         });
         star.addEventListener('click', () => {
             lockedRating = starVal;
-            const radio = radios.find(r => Number(r.value) === starVal);
-            if (radio) radio.checked = true;
+            const sval = sval.find(r => Number(r.value) === starVal);
+            if (sval) sval.checked = true;
             paintStars(lockedRating);
         });
     });
