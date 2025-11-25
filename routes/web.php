@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
 
 Route::get('/', function () {
-    return view('home');
+    return view('pages.home');
 })->name('home');
 
 Route::get('login', [AuthManager::class, 'login'])->name('login');
