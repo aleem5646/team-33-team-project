@@ -30,7 +30,7 @@
     <div class="product-section">
         <div class="product-left">
             <!-- Here we will add the pictures of the items. -->
-            <img src="{{ asset(' ' ) }}" alt="Solara Wooden Flask"> 
+            <img src="{{ asset('imgs/homepageimage3.jpg') }}" alt="" class="product-img"> 
         </div>
 
         <div class="product-right">
