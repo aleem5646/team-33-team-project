@@ -9,16 +9,19 @@
         html, body {
             margin: 0;
             padding: 0;
-            min-height: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
         .content-wrapper {
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         .chatbot-icon {
             text-align: right;
             padding: 10px 20px;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -35,8 +38,8 @@
                 </svg>
             </button>
         </div>
-
-        @include('include.footer')
     </div>
+
+    @include('include.footer')
 </body>
 </html>
