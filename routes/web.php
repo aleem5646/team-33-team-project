@@ -76,3 +76,7 @@ Route::group(['middleware'=>['auth','verified']], function (){
 
 Route::get('/returns', [ReturnController::class, 'showForm'])->name('returns.form');
 Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.submit');
+
+Route::get("/returns", function () {
+    return view("pages.return");
+});
