@@ -80,3 +80,7 @@ Route::post('/cart/add', [ProductController::class, 'addToCart'])->name('cart.ad
 
 Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
 Route::post('/checkout', [CheckoutController::class, 'confirmOrder'])->name('order.confirm');
+
+Route::get("/checkout", function () {
+    return view("pages.checkout");
+});
