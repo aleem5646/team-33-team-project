@@ -32,7 +32,7 @@
                        class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
                         CONTACT
                     </a>
-                    <a href="#" 
+                    <a href="{{ route('about') }}" 
                        class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
                         ABOUT
                     </a>
