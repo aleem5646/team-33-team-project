@@ -9,8 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
 
 Route::get('/', function () {
-    return view('pages.home');
+    return view('pages.auth.home');
 })->name('home');
+
+Route::get('/contact', function () {
+    return view('pages.contact');
+})->name('contact');
 
 Route::get('login', [AuthManager::class, 'login'])->name('login');
 Route::post('login', [AuthManager::class, 'loginPost'])->name('login.post');
