@@ -13,7 +13,7 @@ public function up(): void
     {
         Schema::create('product_filter', function (Blueprint $table) {
             $table->primary(['productId', 'filterId']);
-            $table->foreignId('productId')->constrained('products', 'productId')->onDelete('cascade');
+            $table->foreignId('productId')->constrained('products', 'productId')->cascadeOnDelete();
             $table->foreignId('filterId')->constrained('filters', 'filterId')->onDelete('cascade');
         });
     }

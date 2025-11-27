@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id('productId');
             $table->foreignId('categoryId')->constrained('categories', 'categoryId');
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('name')->unique();
+            $table->text('description');
             $table->decimal('price', 8, 2);
-            $table->string('image_url')->nullable();
-            $table->timestamps();
+            $table->string('image_url');
         });
     }
+
     /**
      * Reverse the migrations.
      */

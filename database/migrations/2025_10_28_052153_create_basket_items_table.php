@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id('basket_itemId');
             $table->foreignId('basketId')->constrained('baskets', 'basketId')->onDelete('cascade');
             $table->foreignId('product_variantId')->constrained('product_variants', 'product_variantId')->onDelete('cascade');
-            $table->integer('quantity');
-            $table->timestamps();
+            $table->unsignedInteger('quantity');
         });
     }
+
     /**
      * Reverse the migrations.
      */

@@ -9,12 +9,11 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up(): void
+    public function up(): void
     {
         Schema::create('baskets', function (Blueprint $table) {
             $table->id('basketId');
             $table->foreignId('userId')->unique()->constrained('users', 'userId')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

@@ -9,13 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up(): void
+    public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id('order_itemId');
             $table->foreignId('orderId')->constrained('orders', 'orderId')->onDelete('cascade');
             $table->foreignId('product_variantId')->constrained('product_variants', 'product_variantId');
-            $table->integer('quantity');
+            $table->unsignedInteger('quantity');
             $table->decimal('price', 8, 2);
         });
     }
