@@ -16,7 +16,6 @@ class ProductVariant extends Model
         'count',
         'name',
         'value',
-        'sku',
         'price',
     ];
 

@@ -11,6 +11,7 @@ class ContactForm extends Model
 
     protected $table = 'contact_form';
     protected $primaryKey = 'formId';
+    public $timestamps = false;
 
     protected $fillable = [
         'first_name',

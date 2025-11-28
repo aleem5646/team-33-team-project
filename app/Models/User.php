@@ -15,14 +15,18 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $primaryKey = 'userId';
     protected $table = "users";
+    public $timestamps = false;
 
     protected $fillable = [
         'first_name',
         'last_name',
         'email',
         'hashed_password',
-        'phone',
         'user_type',
+        'address_line',
+        'city',
+        'postcode',
+        'country'
     ];
 
     protected $hidden = [
@@ -40,6 +44,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAuthPassword()
     {
         return $this->hashed_password;
+    }
+
+    public function getAddress() {
+        return $t
     }
 
 // Relationships
