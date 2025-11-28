@@ -5,7 +5,8 @@
     --color-brand-yellow: #DFFE73;
     --color-brand-teal: #73FED7;
     --color-bg-grey: #DDE0DC;
-    --colo
+    --color-cta: #5829D6;
+    --color-text: #3B3B3B;
 
     --radius-*: initial;
     --radius-xsm: 4px;
@@ -15,4 +16,5 @@
 
     --font-open-sans: "Open Sans";
     --font-poppins: Poppins;
+    --font-geist-mono: "Geist Mono";
 }
