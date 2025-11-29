@@ -2,85 +2,102 @@
 @section('title','Product Detail')
 
 @section('content')
-<style>
-    .container { max-width: 900px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; }
-    .product-section { display: flex; gap: 20px; margin-bottom: 30px; }
-    .product-left { 
-        flex: 1; background: #dee1d4; border: 1px solid #ccc; border-radius: 8px; 
-        padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
-        display: flex; align-items: center; justify-content: center;
-    }
-    .product-left img { max-width: 100%; border-radius: 6px; }
-    .product-right { flex: 2; }
-    h1 { margin-bottom: 10px; }
-    .price { color: #69714a; font-size: 20px; font-weight: bold; margin-bottom: 10px; }
-    .rating { color: #d4af37; margin-bottom: 15px; }
-    label { display: block; margin-top: 15px; font-weight: bold; }
-    input[type="number"] { width: 60px; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
-    .add-btn { margin-top: 20px; background: #69714a; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; }
-    .add-btn:hover { background: #55603a; }
-    .reviews { border-top: 1px solid #ccc; margin-top: 30px; padding-top: 20px; }
-    .notification { display: none; background: #d4edda; color: #155724; padding: 10px; border-radius: 6px; margin-bottom: 15px; }
-    .section-block { margin-bottom: 20px; }
-</style>
 
-<div class="container">
-    <div id="cartMessage" class="notification">✅ Item added to cart!</div>
+<div class="max-w-[900px] mx-auto p-5">
 
-    <div class="product-section">
-        <div class="product-left">
-            <!-- Here we will add the pictures of the items. -->
-            <img src="{{ asset('imgs/homepageimage3.jpg') }}" alt="" class="product-img"> 
+    <!-- Notification -->
+    <div id="cartMessage"
+         class="hidden bg-[#d4edda] text-[#155724] p-3 rounded-md mb-4">
+        ✅ Item added to cart!
+    </div>
+
+    <!-- Product Section -->
+    <div class="flex gap-5 mb-8">
+
+        <!-- Left: Product Image -->
+        <div class="flex-1 bg-[#dee1d4] border border-[#ccc] rounded-lg p-5 shadow-md flex items-center justify-center">
+            <img src="{{ asset('imgs/homepageimage3.jpg') }}"
+                 alt=""
+                 class="rounded-md object-contain w-[180px] max-w-none"
+                 style="width: 180px; max-width: none; height: auto;">
         </div>
 
-        <div class="product-right">
-            <h1>Solara Wooden Flask</h1>
-            <p class="price">£9.99</p>
-            <p class="rating">★★★★☆ (296 reviews)</p>
+        <!-- Right: Product Info -->
+        <div class="flex-[2] flex flex-col">
 
-            <div class="section-block">
-                <h3><b>Information</b></h3>
+            <h1 class="mb-2 text-2xl font-bold">Solara Wooden Flask</h1>
+
+            <p class="text-[#69714a] text-xl font-bold mb-2">£9.99</p>
+
+            <p class="text-[#d4af37] mb-4">★★★★☆ (296 reviews)</p>
+
+            <div class="mb-5">
+                <h3 class="font-bold mb-1">Information</h3>
                 <p>Eco-friendly wooden flask. Keeps drinks hot or cold.</p>
             </div>
-            
-            <div class="section-block">
-                <h3><b>Description</b></h3>
+
+            <div class="mb-5">
+                <h3 class="font-bold mb-1">Description</h3>
                 <p>Made from sustainable wood. Leak-proof and stylish.</p>
             </div>
 
-            <div class="section-block">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            <div class="mb-5">
+                <label for="quantity" class="block mt-3 font-bold">Quantity:</label>
+                <input type="number"
+                       id="quantity"
+                       name="quantity"
+                       value="1"
+                       min="1"
+                       class="w-[60px] p-2 mt-1 border border-[#ccc] rounded-md">
             </div>
 
-            <div class="section-block">
-                <label>Estimated Carbon Impact:</label>
+            <div class="mb-5">
+                <label class="block mt-3 font-bold">Estimated Carbon Impact:</label>
                 <p>0 ± -</p>
             </div>
 
+            <!-- Add to Cart Button -->
             <form id="cartForm" method="POST" action="{{ route('cart.add') }}">
                 @csrf
                 <input type="hidden" name="product_id" value="1">
                 <input type="hidden" id="selected_variant" name="selected_variant" value="oak">
-                <button type="submit" class="add-btn">Add to Cart</button>
+
+                <button type="submit"
+                 class="mt-5 text-white py-2 px-4 rounded-md"
+                   style="background: #55603a !important; display: inline-block !important; border: 2px solid black !important;">
+                     Add to Cart
+                </button>
+
             </form>
+
         </div>
     </div>
 
-    <div class="reviews">
-        <h3><b>Reviews</b></h3>
-        <p><span class="rating">★★★★☆</span> - <span style="color:black;">Love the design!</span></p>
-        <p><span class="rating">★★★★★</span> - <span style="color:black;">Keeps my tea hot for hours.</span></p>
+    <!-- Reviews -->
+    <div class="border-t border-[#ccc] mt-8 pt-5">
+        <h3 class="font-bold text-lg mb-3">Reviews</h3>
+
+        <p>
+            <span class="text-[#d4af37]">★★★★☆</span>
+            - <span class="text-black">Love the design!</span>
+        </p>
+
+        <p>
+            <span class="text-[#d4af37]">★★★★★</span>
+            - <span class="text-black">Keeps my tea hot for hours.</span>
+        </p>
     </div>
+
 </div>
 
 <script>
-    document.getElementById('cartForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const msg = document.getElementById('cartMessage');
-        msg.style.display = 'block';
-        setTimeout(() => { msg.style.display = 'none'; }, 3000);
-        this.submit(); 
-    });
+document.getElementById('cartForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const msg = document.getElementById('cartMessage');
+    msg.classList.remove('hidden');
+    setTimeout(() => { msg.classList.add('hidden'); }, 3000);
+    this.submit();
+});
 </script>
+
 @endsection
