@@ -19,7 +19,7 @@
             <img src="{{ asset('imgs/homepageimage3.jpg') }}"
                  alt=""
                  class="rounded-md object-contain w-[180px] max-w-none"
-                 style="width: 180px; max-width: none; height: auto;">
+                 style="width: 300px; max-width: none; height: auto;">
         </div>
 
         <!-- Right: Product Info -->
