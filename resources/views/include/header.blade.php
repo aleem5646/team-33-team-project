@@ -4,8 +4,8 @@
 </head>
 
 <!-- Navigation Bar -->
-<nav class="border-b" style="background-color:#989d7f; border-color:#7a7f63;">
-    <div class="container mx-auto px-4">
+<nav class="border-b bg-[#989d7f] border-[#7a7f63]">
+    <div class="w-[90%] max-w-[1200px] mx-auto py-5">
         <div class="flex justify-between items-center h-16">
 
             <!-- Logo -->
@@ -13,7 +13,7 @@
                 <a href="{{ route('home') }}" class="flex-shrink-0">
                     <img src="{{ asset('imgs/Solara_Logo.svg') }}" 
                          alt="Solara Logo" 
-                         style="height:75px; width:auto;">
+                         class="h-[75px] w-auto">
                 </a>
             </div>
 
