@@ -4,7 +4,7 @@
 </head>
 
 <!-- Navigation Bar -->
-<nav class="border-b bg-[#989d7f] border-[#7a7f63]">
+<nav class="border-b bg-[#989d7f] border-[#7a7f63] relative z-50">
     <div class="w-[90%] max-w-[1200px] mx-auto py-5">
         <div class="flex justify-between items-center h-16">
 
@@ -59,19 +59,9 @@
                 </a>
 
                 @auth
-                    <!-- Authenticated User -->
-                    <a href="#" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
-                        USER PROFILE
-                    </a>
-                    <a href="{{ route('logout') }}" 
-                       class="text-red-600 hover:text-red-800 px-3 py-2 rounded-md text-sm font-medium">
-                        LOGOUT
-                    </a>
-                @else
-                    <!-- Profile Dropdown -->
+                    <!-- Authenticated User Dropdown -->
                     <div class="relative">
-                        <button id="profileMenuButton" 
+                        <button id="authProfileMenuButton" 
                                 class="flex items-center bg-white p-2 rounded-full text-black hover:text-gray-800 focus:outline-none">
                             <svg xmlns="http://www.w3.org/2000/svg" 
                                  class="h-6 w-6" 
@@ -80,15 +70,47 @@
                                 <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
                             </svg>
                         </button>
-                        <div id="profileDropdown" 
-                             class="hidden absolute right-0 mt-2 w-44 bg-white border rounded-md shadow-lg">
+                        <div id="authProfileDropdown" 
+                             class="hidden absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50 overflow-hidden">
+                            <a href="#" 
+                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
+                                My Profile
+                            </a>
+                            <a href="#" 
+                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
+                                Dark Mode
+                            </a>
+                            <a href="{{ route('logout') }}" 
+                               class="block px-4 py-2 text-red-600 hover:bg-gray-100 whitespace-nowrap text-center">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                @else
+                    <!-- Guest Profile Dropdown -->
+                    <div class="relative">
+                        <button id="guestProfileMenuButton" 
+                                class="flex items-center bg-white p-2 rounded-full text-black hover:text-gray-800 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                 class="h-6 w-6" 
+                                 fill="currentColor" 
+                                 viewBox="0 0 24 24">
+                                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+                            </svg>
+                        </button>
+                        <div id="guestProfileDropdown" 
+                             class="hidden absolute right-0 mt-2 w-44 bg-white border rounded-md shadow-lg z-50 overflow-hidden">
                             <a href="{{ route('login') }}" 
-                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap">
+                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
                                 Login
                             </a>
                             <a href="{{ route('registration') }}" 
-                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap">
+                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
                                 Sign Up
+                            </a>
+                            <a href="#" 
+                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center">
+                                Dark Mode
                             </a>
                         </div>
                     </div>
@@ -106,10 +128,34 @@
     </div>
 
 <script>
-    const btn = document.getElementById('profileMenuButton');
-    const dd = document.getElementById('profileDropdown');
-    if (btn && dd) {
-        btn.addEventListener('click', () => dd.classList.toggle('hidden'));
+    // Auth Dropdown
+    const authBtn = document.getElementById('authProfileMenuButton');
+    const authDd = document.getElementById('authProfileDropdown');
+    if (authBtn && authDd) {
+        authBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            authDd.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+            if (!authBtn.contains(e.target) && !authDd.contains(e.target)) {
+                authDd.classList.add('hidden');
+            }
+        });
+    }
+
+    // Guest Dropdown
+    const guestBtn = document.getElementById('guestProfileMenuButton');
+    const guestDd = document.getElementById('guestProfileDropdown');
+    if (guestBtn && guestDd) {
+        guestBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            guestDd.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+            if (!guestBtn.contains(e.target) && !guestDd.contains(e.target)) {
+                guestDd.classList.add('hidden');
+            }
+        });
     }
 </script>
 
