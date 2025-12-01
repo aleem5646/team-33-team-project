@@ -17,6 +17,7 @@ class ReturnModel extends Model
         'userId',
         'reason',
         'status',
+        'image_path',
     ];
 
     // Relationships

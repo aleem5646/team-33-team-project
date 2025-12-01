@@ -74,9 +74,6 @@ Route::group(['middleware'=>['auth','verified']], function (){
 
 });
 
-Route::get('/returns', [ReturnController::class, 'showForm'])->name('returns.form');
-Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.submit');
-
-Route::get("/returns", function () {
-    return view("pages.return");
-});
+Route::get('/returns', [ReturnController::class, 'index'])->name('returns.index');
+Route::post('/returns/check-order', [ReturnController::class, 'checkOrder'])->name('returns.check_order');
+Route::post('/returns', [ReturnController::class, 'store'])->name('returns.submit');
