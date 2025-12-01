@@ -52,20 +52,22 @@ class ReturnController extends Controller
         $request->validate([
             'order_item_id' => 'required|exists:order_items,order_itemId',
             'comment' => 'required|string|max:1000',
-            'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'file.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
             'terms' => 'accepted',
         ]);
 
-        $imagePath = null;
+        $imagePaths = [];
         if ($request->hasFile('file')) {
-            $imagePath = $request->file('file')->store('returns', 'public');
+            foreach ($request->file('file') as $file) {
+                $imagePaths[] = $file->store('returns', 'public');
+            }
         }
 
         ReturnModel::create([
             'order_itemId' => $request->order_item_id,
             'userId' => Auth::id(), // Nullable if guest
             'reason' => $request->comment,
-            'image_path' => $imagePath,
+            'image_path' => $imagePaths, // Casted to array in model
             'status' => 'Requested',
         ]);
 

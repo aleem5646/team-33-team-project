@@ -20,6 +20,10 @@ class ReturnModel extends Model
         'image_path',
     ];
 
+    protected $casts = [
+        'image_path' => 'array',
+    ];
+
     // Relationships
     public function orderItem(): BelongsTo
     {
