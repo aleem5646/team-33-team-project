@@ -6,7 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
-use App\Http\Controllers\ServiceReviewController;
+use App\Http\Controllers\ProductListingController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -63,10 +64,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('success', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::get('/service-review', function () {
-    return view('service-review'); })->name('service-review.op');
-Route::post('/service-review', [ServiceReviewController::class, 'store']) ->name('service-review.sub');
-
+Route::get('/products', [ProductListingController::class, 'index'])->name('products.index');
+Route::get('/products/{id}', [ProductListingController::class, 'show'])->name('products.show');
 
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware(['auth', 'verified']);
 # Add any routes that a logged in user can access in 

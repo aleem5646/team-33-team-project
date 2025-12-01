@@ -1,10 +1,9 @@
 <nav class="border-b" style="background-color:#989d7f; border-color:#7a7f63;">
-    <div class="container mx-auto px-4">
-        <div class="flex justify-between items-center h-24">
-
+   <div class="w-full px-4">
+        <div class="flex items-center h-24">
             <div class="flex-1">
-                <a href="{{ route('home') }}" class="flex-shrink-0">
-                    <img src="{{ asset('imgs/Solara_Logo.svg') }}" alt="Solara Logo" style="height:75px; width:auto;">
+                <a href="{{ route('home') }}" class="shrink-0">
+                    <img src="{{ asset('imgs/Solara_Logo.svg') }}" alt="Solara Logo" class="h-[75px] w-auto">
                 </a>
             </div>
 
@@ -13,7 +12,7 @@
                     <a href="{{ route('home') }}" class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
                         HOME
                     </a>
-                    <a href="#" class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
+                    <a href="{{ route('products.index') }}" class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
                         PRODUCTS
                     </a>
                     <a href="#" class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
