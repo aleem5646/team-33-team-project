@@ -36,39 +36,39 @@ class AuthManager extends Controller
     }
 
    function loginPost(Request $request){
-    $request->validate([
-        "email"=> 'required|email',
-        "hashed_password"=>'required'
-    ]);
+        $request->validate([
+            "email"=> 'required|email',
+            "hashed_password"=>'required'
+        ]);
 
-    $credentials = [
-        'email' => $request->email,
-        'password' => $request->hashed_password
-    ];
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->hashed_password
+        ];
 
-    if(Auth::attempt($credentials)){
-        $user = Auth::user();
-        Auth::logout();
-        if (!$user->hasVerifiedEmail()) {
-            return Response::json(['message' => 'You must verify your email first. Check your inbox for the verification link.'], 403);
+        if(Auth::attempt($credentials)){
+            $user = Auth::user();
+            Auth::logout();
+            if (!$user->hasVerifiedEmail()) {
+                return Response::json(['message' => 'You must verify your email first. Check your inbox for the verification link.'], 403);
+            }
+            $code = random_int(100000, 999999);
+            User2faCode::create([
+                'userId' => $user->userId,
+                'code' => $code,
+                'expires_at' => Carbon::now()->addMinutes(10)
+            ]);
+            
+            $user->notify(new Send2faCode($code));
+
+            return Response::json([
+                'status' => '2fa_required',
+                'userId' => $user->userId
+            ]);
         }
-        $code = random_int(100000, 999999);
-        User2faCode::create([
-            'userId' => $user->userId,
-            'code' => $code,
-            'expires_at' => Carbon::now()->addMinutes(10)
-        ]);
-        
-        $user->notify(new Send2faCode($code));
 
-        return Response::json([
-            'status' => '2fa_required',
-            'userId' => $user->userId
-        ]);
+        return Response::json(['message' => 'Invalid login details'], 401);
     }
-
-    return Response::json(['message' => 'Invalid login details'], 401);
-}
 
     function registrationPost(Request $request){
         $request->validate([
@@ -89,21 +89,20 @@ class AuthManager extends Controller
         $user = User::create($data);
 
         if(!$user){
-        return Response::json(['message' => 'Error with registration'], 500);
+            return Response::json(['message' => 'Error with registration'], 500);
         }
         $code = random_int(100000, 999999);
-    User2faCode::create([
-        'userId' => $user->userId,
-        'code' => $code,
-        'expires_at' => Carbon::now()->addMinutes(10)
-    ]);
-    $user->notify(new Send2faCode($code));
-    return Response::json([
-        'status' => '2fa_required',
-        'userId' => $user->userId
-    ]);
-}
-
+        User2faCode::create([
+            'userId' => $user->userId,
+            'code' => $code,
+            'expires_at' => Carbon::now()->addMinutes(10)
+        ]);
+        $user->notify(new Send2faCode($code));
+        return Response::json([
+            'status' => '2fa_required',
+            'userId' => $user->userId
+        ]);
+    }
 
     function logout(){
         Session::flush();
@@ -162,78 +161,79 @@ class AuthManager extends Controller
         return back()->withErrors(['email' => __($status)]);
     }
 
-public function show2faForm()
-{
-    if (!session()->has('2fa_user_id')) {
-        return redirect(route('login'));
-    }
-    return view('2fa-verify');
-}
-
-public function verify2fa(Request $request)
-{
-    $request->validate(['code' => 'required|numeric']);
-
-    if (!session()->has('2fa_user_id')) {
-        return redirect(route('login'));
-    }
-
-    $userId = session('2fa_user_id');
-
-    $findCode = User2faCode::where('userId', $userId)
-                            ->where('code', $request->code)
-                            ->where('expires_at', '>', Carbon::now())
-                            ->first();
-
-    if ($findCode) {
-        $user = User::find($userId);
-        Auth::login($user);
-
-        session()->forget('2fa_user_id');
-        User2faCode::where('userId', $userId)->delete();
-
-        if ($user->user_type == 'admin') {
-            return redirect()->route('admin.dashboard');
-        } else {
-            return redirect()->intended(route('home'));
+    public function show2faForm()
+    {
+        if (!session()->has('2fa_user_id')) {
+            return redirect(route('login'));
         }
+        return view('2fa-verify');
     }
 
-    return redirect(route('2fa.form'))->with('error', 'Invalid or expired 2FA code.');
-}
-public function verifyCode(Request $request)
-{
-    $request->validate([
-        'code' => 'required|numeric',
-        'userId' => 'required|numeric'
-    ]);
+    public function verify2fa(Request $request)
+    {
+        $request->validate(['code' => 'required|numeric']);
 
-    $findCode = User2faCode::where('userId', $request->userId)
-                            ->where('code', $request->code)
-                            ->where('expires_at', '>', Carbon::now())
-                            ->first();
-
-    if ($findCode) {
-        $user = User::find($request->userId);
-
-        if (!$user->hasVerifiedEmail()) {
-            $user->markEmailAsVerified();
-            event(new Verified($user));
+        if (!session()->has('2fa_user_id')) {
+            return redirect(route('login'));
         }
 
-        Auth::login($user);
+        $userId = session('2fa_user_id');
 
-        User2faCode::where('userId', $request->userId)->delete();
+        $findCode = User2faCode::where('userId', $userId)
+                                ->where('code', $request->code)
+                                ->where('expires_at', '>', Carbon::now())
+                                ->first();
 
-        $redirectUrl = ($user->user_type == 'admin') ? route('admin.dashboard') : route('home');
-        
-        return Response::json([
-            'status' => 'success',
-            'redirect' => $redirectUrl
+        if ($findCode) {
+            $user = User::find($userId);
+            Auth::login($user);
+
+            session()->forget('2fa_user_id');
+            User2faCode::where('userId', $userId)->delete();
+
+            if ($user->user_type == 'admin') {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->intended(route('home'));
+            }
+        }
+
+        return redirect(route('2fa.form'))->with('error', 'Invalid or expired 2FA code.');
+    }
+
+    public function verifyCode(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|numeric',
+            'userId' => 'required|numeric'
         ]);
-    }
 
-    return Response::json(['message' => 'Invalid or expired code.'], 401);
-}
+        $findCode = User2faCode::where('userId', $request->userId)
+                                ->where('code', $request->code)
+                                ->where('expires_at', '>', Carbon::now())
+                                ->first();
+
+        if ($findCode) {
+            $user = User::find($request->userId);
+
+            if (!$user->hasVerifiedEmail()) {
+                $user->markEmailAsVerified();
+                event(new Verified($user));
+            }
+
+            Auth::login($user);
+
+            User2faCode::where('userId', $request->userId)->delete();
+
+            $redirectUrl = ($user->user_type == 'admin') ? route('admin.dashboard') : route('home');
+            
+            return Response::json([
+                'status' => 'success',
+                'redirect' => $redirectUrl
+            ]);
+        }
+
+        return Response::json(['message' => 'Invalid or expired code.'], 401);
+    }
 
 }

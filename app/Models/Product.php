@@ -31,7 +31,7 @@ class Product extends Model
     }
     public function reviews(): HasMany
     {
-        return $this->hasMany(Review::class, 'productId', 'productId');
+        return $this->hasMany(ProductReview::class, 'productId', 'productId');
     }
     public function filters(): BelongsToMany
     {

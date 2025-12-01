@@ -41,13 +41,20 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    //Helper functions
     public function getAuthPassword()
     {
         return $this->hashed_password;
     }
 
-    public function getAddress() {
-        return $t
+    public function getName() : string {
+        /* returns the full name of the user */
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function getAddress() : string {
+        /* returns the users full address */
+        return "{$this->address_line}, {$this->city}, {$this->postcode}, {$this->country}";
     }
 
 // Relationships
