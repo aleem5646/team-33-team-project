@@ -21,19 +21,19 @@
             <div class="hidden sm:block">
                 <div class="flex space-x-4">
                     <a href="{{ route('home') }}" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
+                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
                         HOME
                     </a>
                     <a href="#" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
+                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
                         PRODUCTS
                     </a>
                     <a href="#" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
+                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
                         CONTACT
                     </a>
                     <a href="{{ route('about') }}" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
+                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
                         ABOUT
                     </a>
                 </div>
@@ -42,9 +42,10 @@
             <!-- Right Side (Basket + Auth/Profile) -->
             <div class="flex-1 flex justify-end items-center space-x-4">
 
+                @auth
                 <!-- Basket -->
                 <a href="#" 
-                   class="flex items-center text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
+                   class="flex items-center text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" 
                          class="h-5 w-5 mr-1" 
                          fill="none" 
@@ -57,6 +58,7 @@
                     </svg>
                     BASKET
                 </a>
+                @endauth
 
                 @auth
                     <!-- Authenticated User Dropdown -->
@@ -88,31 +90,19 @@
                     </div>
                 @else
                     <!-- Guest Profile Dropdown -->
-                    <div class="relative">
-                        <button id="guestProfileMenuButton" 
-                                class="flex items-center bg-white p-2 rounded-full text-black hover:text-gray-800 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" 
-                                 class="h-6 w-6" 
-                                 fill="currentColor" 
-                                 viewBox="0 0 24 24">
-                                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
-                            </svg>
+                    <!-- Guest Links -->
+                    <div class="flex space-x-2 items-center">
+                        <button class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium border border-black">
+                            Dark Mode
                         </button>
-                        <div id="guestProfileDropdown" 
-                             class="hidden absolute right-0 mt-2 w-44 bg-white border rounded-md shadow-lg z-50 overflow-hidden">
-                            <a href="{{ route('login') }}" 
-                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
-                                Login
-                            </a>
-                            <a href="{{ route('registration') }}" 
-                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
-                                Sign Up
-                            </a>
-                            <a href="#" 
-                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center">
-                                Dark Mode
-                            </a>
-                        </div>
+                        <a href="{{ route('login') }}" 
+                           class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium border border-black">
+                            LOGIN
+                        </a>
+                        <a href="{{ route('registration') }}" 
+                           class="bg-black text-white hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium">
+                            REGISTER
+                        </a>
                     </div>
                 @endauth
             </div>
@@ -142,21 +132,8 @@
             }
         });
     }
-
-    // Guest Dropdown
-    const guestBtn = document.getElementById('guestProfileMenuButton');
-    const guestDd = document.getElementById('guestProfileDropdown');
-    if (guestBtn && guestDd) {
-        guestBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            guestDd.classList.toggle('hidden');
-        });
-        document.addEventListener('click', (e) => {
-            if (!guestBtn.contains(e.target) && !guestDd.contains(e.target)) {
-                guestDd.classList.add('hidden');
-            }
-        });
-    }
 </script>
+
+
 
 </nav>
