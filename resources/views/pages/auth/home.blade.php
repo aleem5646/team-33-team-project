@@ -3,126 +3,49 @@
 
 @section('content')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home </title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .main-content {
-            padding: 40px 0;
-            font-family: sans-serif;
-        }
-
-        .product-grid {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-        }
-
-        .product-card {
-            flex: 1;
-            background-color: #f9f9f9;
-            text-align: center;
-            overflow: hidden; 
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .product-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover; 
-            min-height: 250px;
-            transition: transform 0.3s ease; 
-        }
-
-        .product-caption {
-            padding: 15px;
-            font-weight: bold;
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(1.05); 
-        }
-
-        .shop-button {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .shop-button a {
-            display: inline-block;
-            background-color: #92b09a; 
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 1px;
-            transition: background-color 0.3s;
-        }
-
-        .shop-button a:hover {
-            background-color: #7a9480;
-        }
-    </style>
-</head>
-<body>
+<main class="w-[90%] max-w-[1200px] mx-auto py-10 font-sans">
     
-    <main class="main-content container">
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="{{ asset('imgs/homepageimage1.jpg') }}" alt="Ethically Sourced Goods" class="product-img">
-                <div class="product-caption">
-                    Ethically Sourced Goods!
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="{{ asset('imgs/homepageimage2.jpg') }}" alt="Sustainable Living" class="product-img">
-                <div class="product-caption">
-                    Sustainable Living!
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="{{ asset('imgs/homepageimage3.jpg') }}" alt="Low Carbon Shipping" class="product-img">
-                <div class="product-caption">
-                    Low Carbon Shipping!
-                </div>
+    <div class="flex justify-around gap-6">
+        
+        <div class="flex-1 bg-gray-100 text-center overflow-hidden rounded shadow">
+            <img src="{{ asset('imgs/homepageimage1.jpg') }}"
+                 alt="Ethically Sourced Goods"
+                 class="w-full h-auto object-cover min-h-[250px] transition-transform duration-300 hover:scale-105">
+            
+            <div class="p-4 font-bold">
+                Ethically Sourced Goods!
             </div>
         </div>
 
-        <div class="shop-button">
-            <a href="#">SHOP NOW</a>
+        <div class="flex-1 bg-gray-100 text-center overflow-hidden rounded shadow">
+            <img src="{{ asset('imgs/homepageimage2.jpg') }}"
+                 alt="Sustainable Living"
+                 class="w-full h-auto object-cover min-h-[250px] transition-transform duration-300 hover:scale-105">
+            
+            <div class="p-4 font-bold">
+                Sustainable Living!
+            </div>
         </div>
-    </main>
-   
-    
 
-    <script>
-        console.log("Homepage script loaded.");
-    </script>
+        <div class="flex-1 bg-gray-100 text-center overflow-hidden rounded shadow">
+            <img src="{{ asset('imgs/homepageimage3.jpg') }}"
+                 alt="Low Carbon Shipping"
+                 class="w-full h-auto object-cover min-h-[250px] transition-transform duration-300 hover:scale-105">
+            
+            <div class="p-4 font-bold">
+                Low Carbon Shipping!
+            </div>
+        </div>
 
-</body>
-</html>
+    </div>
+
+    <div class="mt-10 text-center">
+        <a 
+           class="inline-block bg-[#92b09a] text-white px-8 py-3 rounded-full uppercase font-bold tracking-wide transition duration-300 hover:bg-[#7a9480]">
+            Shop Now
+        </a>
+    </div>
+
+</main>
 
 @endsection
