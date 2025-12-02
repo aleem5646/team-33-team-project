@@ -16,6 +16,7 @@ class ContactForm extends Model
         'first_name',
         'last_name',
         'email',
+        'subject',
         'message',
     ];
 }

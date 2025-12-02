@@ -16,6 +16,8 @@ Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
 
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.submit');
+
 Route::get('login', [AuthManager::class, 'login'])->name('login');
 Route::post('login', [AuthManager::class, 'loginPost'])->name('login.post');
 Route::get('registration', [AuthManager::class, 'registration'])->name('registration');
