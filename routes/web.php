@@ -76,3 +76,12 @@ Route::group(['middleware'=>['auth','verified']], function (){
 
 Route::get('/returns', [ReturnController::class, 'showForm'])->name('returns.form');
 Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.submit');
+
+use App\Http\Controllers\BasketController;
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
+    Route::post('/basket/add', [BasketController::class, 'add'])->name('basket.add');
+    Route::post('/basket/remove/{itemId}', [BasketController::class, 'remove'])->name('basket.remove');
+    Route::post('/basket/update/{itemId}', [BasketController::class, 'update'])->name('basket.update');
+});
