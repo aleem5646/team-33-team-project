@@ -28,7 +28,7 @@
                        class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
                         PRODUCTS
                     </a>
-                    <a href="#" 
+                    <a href="{{ route('contact') }}" 
                        class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
                         CONTACT
                     </a>
@@ -43,7 +43,7 @@
             <div class="flex-1 flex justify-end items-center space-x-4">
 
                 <!-- Basket -->
-                <a href="#" 
+                <a href="{{ route('basket.index') }}" 
                    class="flex items-center text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" 
                          class="h-5 w-5 mr-1" 
