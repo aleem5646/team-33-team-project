@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_review', function (Blueprint $table) {
+        Schema::create('service_reviews', function (Blueprint $table) {
             $table->id('service_reviewId');
             $table->foreignId('userId')->nullable()->constrained('users', 'userId')->onDelete('set null');
             $table->unsignedTinyInteger('rating');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_review');
+        Schema::dropIfExists('service_reviews');
     }
 };

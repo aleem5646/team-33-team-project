@@ -17,8 +17,7 @@ return new class extends Migration
             $table->foreignId('userId')->nullable()->constrained('users', 'userId')->onDelete('set null');
             $table->text('reason');
             $table->string('status')->default('requested');
-            $table->date('created_at')->nullable();
-            $table->date('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

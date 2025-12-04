@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('processed_by')->nullable()->constrained('users', 'userId')->onDelete('set null');
             $table->unsignedInteger('quantity');
             $table->enum('transaction_type', ['incoming', 'outgoing']);
-            $table->string('reference'); //context to transaction
             $table->timestamps();
         });
     }

@@ -17,8 +17,7 @@ return new class extends Migration
             $table->foreignId('userId')->constrained('users', 'userId')->onDelete('cascade');
             $table->unsignedTinyInteger('rating');
             $table->text('review')->nullable();
-            $table->date('created_at')->nullable();
-            $table->date('updated_at')->nullable();
+            $table->timestamps();
             $table->unique(['productId', 'userId']);
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('product_reviews');
     }
 };

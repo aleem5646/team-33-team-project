@@ -14,7 +14,7 @@ class Order extends Model
     protected $primaryKey = 'orderId';
     protected $fillable = [
         'userId',
-        'shippingId',
+        'shipping_address',
         'transactionId',
         'total_price',
         'status',
@@ -25,12 +25,16 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'userId', 'userId');
     }
-    public function shippingAddress(): BelongsTo
-    {
-        return $this->belongsTo(ShippingAddress::class, 'shippingId', 'shippingId');
-    }
     public function items(): HasMany
     {
         return $this->hasMany(OrderItem::class, 'orderId', 'orderId');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'datetime:Y-m-d',
+            'updated_at' => 'datetime:Y-m-d',
+        ];
     }
 }

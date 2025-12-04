@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('userId')->nullable()->constrained('users', 'userId')->onDelete('set null');
             $table->string('shipping_address');
             $table->enum('status', ['pending', 'approved', 'delivered', 'cancelled'])->default('pending');
-            $table->date('created_at')->nullable();
-            $table->date('updated_at')->nullable();
+            $table->decimal('total_price', 8, 2);
+            $table->timestamps();
         });
     }
 

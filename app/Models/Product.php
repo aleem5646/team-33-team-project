@@ -12,6 +12,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $primaryKey = 'productId';
+    public $timestamps = false;
     protected $fillable = [
         'categoryId',
         'name',
@@ -29,7 +30,7 @@ class Product extends Model
     {
         return $this->hasMany(ProductVariant::class, 'productId', 'productId');
     }
-    public function reviews(): HasMany
+    public function ProductReviews(): HasMany
     {
         return $this->hasMany(ProductReview::class, 'productId', 'productId');
     }

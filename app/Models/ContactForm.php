@@ -19,4 +19,9 @@ class ContactForm extends Model
         'email',
         'message',
     ];
+
+    public function getContactName() : string {
+        /* Returns the full name of the contactee */
+        return "{$this->first_name} {$this->last_name}";
+    }
 }
