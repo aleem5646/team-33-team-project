@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Review extends Model
+class ProductReview extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'reviewId';
+    protected $primaryKey = 'product_reviewId';
     protected $fillable = [
         'productId',
         'userId',
@@ -26,5 +26,13 @@ class Review extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'userId', 'userId');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'datetime:Y-m-d',
+            'updated_at' => 'datetime:Y-m-d',
+        ];
     }
 }

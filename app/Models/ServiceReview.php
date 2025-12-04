@@ -11,6 +11,7 @@ class ServiceReview extends Model
     use HasFactory;
     protected $table = 'review';
     protected $primaryKey = 'reviewId';
+    public $timestamps = false;
     protected $fillable = [
         'userId',
         'rating',

@@ -11,9 +11,9 @@ return new class extends Migration
      */
 public function up(): void
     {
-        Schema::create('product_filter', function (Blueprint $table) {
+        Schema::create('product_filters', function (Blueprint $table) {
             $table->primary(['productId', 'filterId']);
-            $table->foreignId('productId')->constrained('products', 'productId')->onDelete('cascade');
+            $table->foreignId('productId')->constrained('products', 'productId')->cascadeOnDelete();
             $table->foreignId('filterId')->constrained('filters', 'filterId')->onDelete('cascade');
         });
     }
@@ -23,6 +23,6 @@ public function up(): void
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_filter');
+        Schema::dropIfExists('product_filters');
     }
 };

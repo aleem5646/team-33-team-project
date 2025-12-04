@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id('reviewId');
-            $table->foreignId('productId')->constrained('products', 'productId')->onDelete('cascade');
+        Schema::create('product_reviews', function (Blueprint $table) {
+            $table->id('product_reviewId');
+            $table->foreignId('productId')->constrained('products', 'productId')->cascadeOnDelete();
             $table->foreignId('userId')->constrained('users', 'userId')->onDelete('cascade');
             $table->unsignedTinyInteger('rating');
             $table->text('review')->nullable();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('product_reviews');
     }
 };

@@ -12,6 +12,7 @@ class Basket extends Model
     use HasFactory;
 
     protected $primaryKey = 'basketId';
+    public $timestamps = false;
     protected $fillable = [
         'userId',
     ];

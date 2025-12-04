@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('filters', function (Blueprint $table) {
-            $table->id('filterId');
-            $table->string('name')->unique();
+        Schema::table('contact_form', function (Blueprint $table) {
+            $table->string('subject')->after('email');
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('filters');
+        Schema::table('contact_form', function (Blueprint $table) {
+            $table->dropColumn('subject');
+        });
     }
 };

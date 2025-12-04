@@ -3,7 +3,7 @@
 
 @section('content')
 <style>
-    .container { max-width: 900px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
     .product-section { display: flex; gap: 20px; margin-bottom: 30px; }
     .product-left { 
         flex: 1; background: #dee1d4; border: 1px solid #ccc; border-radius: 8px; 

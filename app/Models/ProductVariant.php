@@ -11,14 +11,19 @@ class ProductVariant extends Model
     use HasFactory;
     
     protected $primaryKey = 'product_variantId';
+    public $timestamps = false;
     protected $fillable = [
         'productId',
         'count',
         'name',
         'value',
-        'sku',
         'price',
     ];
+
+    public function getAttributes() : string {
+        /* Returns the attributes of the product variant like size, colour etc */
+        return "{$this->name}: {$this->value}";
+    }
 
     // Relationship
     public function product(): BelongsTo
