@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
 
+use App\Http\Controllers\ReviewsController; // added route
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -70,6 +72,9 @@ Route::group(['middleware'=>['auth','verified']], function (){
     Route::get('/profile', function(){
     return "Hi";
     });
+
+    // added the product review route 
+    Route::post('/reviews', [ReviewsController::class, 'store']);
 
 });
 
