@@ -1,0 +1,11 @@
+Conflict report for merging branch: Contact
+Time: 2025-12-04T21:45:52Z
+
+Conflicted files:
+resources/views/pages/contact.blade.php
+routes/web.php
+
+How to proceed:
+- Check out this snapshot branch locally: git fetch origin && git checkout integration/merge-all-features-conflict-Contact
+- Perform the merge locally and resolve conflicts: git merge origin/Contact
+- Commit resolved files and push the branch or open a PR to development once resolved.
