@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Verified;
 
 Route::get('/', function () {
     return view('pages.home');
+    return view('pages.auth.home');
 })->name('home');
 
 Route::redirect('/home', '/');
