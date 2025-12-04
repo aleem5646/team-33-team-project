@@ -1,10 +1,11 @@
-<?php
+ <?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReturnController;
+use App\Http\Controllers\CheckoutController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
@@ -14,9 +15,18 @@ Route::get('/', function () {
     return view('pages.auth.home');
 })->name('home');
 
+Route::redirect('/home', '/');
+
 Route::get('/about', function () {
     return view('pages.about');
 })->name('about');
+
+
+Route::get('/contact', function () {
+    return view('pages.contact');
+})->name('contact');
+
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.submit');
 
 Route::get('login', [AuthManager::class, 'login'])->name('login');
 Route::post('login', [AuthManager::class, 'loginPost'])->name('login.post');
@@ -91,6 +101,10 @@ Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.
 Route::get("/returns", function () {
     return view("pages.return");
 });
+Route::get('/products', function () {
+    return view('pages.products');
+})->name('products.index');
+
 use App\Http\Controllers\BasketController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -99,3 +113,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/basket/remove/{itemId}', [BasketController::class, 'remove'])->name('basket.remove');
     Route::post('/basket/update/{itemId}', [BasketController::class, 'update'])->name('basket.update');
 });
+
+Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
+Route::post('/checkout', [CheckoutController::class, 'confirmOrder'])->name('order.confirm');
