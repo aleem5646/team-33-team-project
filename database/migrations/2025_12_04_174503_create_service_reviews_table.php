@@ -9,14 +9,10 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up(): void
+    public function up(): void
     {
-        Schema::create('service_review', function (Blueprint $table) {
-            $table->id('serviceReviewId');
-
-            $table->foreignId('userId')->nullable()->constrained('users', 'userId')->onDelete('set null');
-            $table->unsignedTinyInteger('rating');
-            $table->text('review')->nullable();
+        Schema::create('service_reviews', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
