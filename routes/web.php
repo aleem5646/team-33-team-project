@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
@@ -97,6 +97,9 @@ Route::get("/product-detail", function () {
 Route::get('/returns', [ReturnController::class, 'showForm'])->name('returns.form');
 Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.submit');
 
+Route::get("/returns", function () {
+    return view("pages.return");
+});
 Route::get('/products', function () {
     return view('pages.products');
 })->name('products.index');
