@@ -12,14 +12,14 @@ use Illuminate\Auth\Events\Verified;
 
 Route::get('/', function () {
     return view('pages.home');
-    return view('pages.auth.home');
 })->name('home');
+
+Route::redirect('/home', '/');
 
 Route::get('/about', function () {
     return view('pages.about');
 })->name('about');
-    return view('pages.auth.home');
-})->name('home');
+
 
 Route::get('/contact', function () {
     return view('pages.contact');
@@ -97,9 +97,10 @@ Route::get("/product-detail", function () {
 Route::get('/returns', [ReturnController::class, 'showForm'])->name('returns.form');
 Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.submit');
 
-Route::get("/returns", function () {
-    return view("pages.return");
-});
+Route::get('/products', function () {
+    return view('pages.products');
+})->name('products.index');
+
 use App\Http\Controllers\BasketController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -111,7 +112,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
 Route::post('/checkout', [CheckoutController::class, 'confirmOrder'])->name('order.confirm');
-
-Route::get("/returns", function () {
-    return view("pages.checkout");
-});
