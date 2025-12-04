@@ -11,6 +11,7 @@ use Illuminate\Auth\Events\Verified;
 
 Route::get('/', function () {
     return view('pages.home');
+    return view('pages.auth.home');
 })->name('home');
 
 Route::get('/about', function () {
@@ -89,4 +90,12 @@ Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.
 
 Route::get("/returns", function () {
     return view("pages.return");
+});
+use App\Http\Controllers\BasketController;
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
+    Route::post('/basket/add', [BasketController::class, 'add'])->name('basket.add');
+    Route::post('/basket/remove/{itemId}', [BasketController::class, 'remove'])->name('basket.remove');
+    Route::post('/basket/update/{itemId}', [BasketController::class, 'update'])->name('basket.update');
 });
