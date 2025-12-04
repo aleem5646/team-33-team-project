@@ -4,13 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReturnController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
 
 Route::get('/', function () {
     return view('pages.home');
+    return view('pages.auth.home');
 })->name('home');
+
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('about');
 
 Route::get('login', [AuthManager::class, 'login'])->name('login');
 Route::post('login', [AuthManager::class, 'loginPost'])->name('login.post');
@@ -78,4 +84,10 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.s
 Route::post('/cart/add', [ProductController::class, 'addToCart'])->name('cart.add');
 Route::get("/product-detail", function () {
     return view("pages.product-detail");
+});
+Route::get('/returns', [ReturnController::class, 'showForm'])->name('returns.form');
+Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.submit');
+
+Route::get("/returns", function () {
+    return view("pages.return");
 });
