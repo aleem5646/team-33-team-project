@@ -79,7 +79,7 @@ class AuthManager extends Controller
         'hashed_password' => [
         'required',
         'confirmed',
-        PasswordRule::min(6)->letters()->umbers()->symbols()]
+        PasswordRule::min(6)->letters()->numbers()->symbols()]
         ]);
 
         $data['first_name'] = $request->first_name;
