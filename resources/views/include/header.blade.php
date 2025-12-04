@@ -28,7 +28,7 @@
                        class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
                         PRODUCTS
                     </a>
-                    <a href="#" 
+                    <a href="{{ route('contact') }}" 
                        class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
                         CONTACT
                     </a>
