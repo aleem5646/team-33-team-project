@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReturnController;
+use App\Http\Controllers\CheckoutController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
@@ -106,4 +107,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/basket/add', [BasketController::class, 'add'])->name('basket.add');
     Route::post('/basket/remove/{itemId}', [BasketController::class, 'remove'])->name('basket.remove');
     Route::post('/basket/update/{itemId}', [BasketController::class, 'update'])->name('basket.update');
+});
+
+Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
+Route::post('/checkout', [CheckoutController::class, 'confirmOrder'])->name('order.confirm');
+
+Route::get("/returns", function () {
+    return view("pages.checkout");
 });
