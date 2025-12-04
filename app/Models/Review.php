@@ -11,9 +11,10 @@ class Review extends Model
     use HasFactory;
 
     protected $primaryKey = 'reviewId';
+
     protected $fillable = [
-        'productId',
-        'userId',
+        'product_id', // changed to snake case 
+        'user_id', //
         'rating',
         'review',
     ];
