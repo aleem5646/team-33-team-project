@@ -9,15 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up(): void
+    public function up(): void
     {
-        Schema::create('contact_form', function (Blueprint $table) {
+        Schema::create('contact_forms', function (Blueprint $table) {
             $table->id('formId');
-            $table->string('first_name'); 
+            $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
             $table->mediumText('message');
-            $table->timestamps();
         });
     }
 
@@ -26,6 +25,6 @@ public function up(): void
      */
     public function down(): void
     {
-        Schema::dropIfExists('contact_form');
+        Schema::dropIfExists('contact_forms');
     }
 };

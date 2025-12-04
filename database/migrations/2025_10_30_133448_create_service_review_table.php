@@ -9,14 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up(): void
+    public function up(): void
     {
-        Schema::create('service_review', function (Blueprint $table) {
+        Schema::create('service_reviews', function (Blueprint $table) {
             $table->id('service_reviewId');
             $table->foreignId('userId')->nullable()->constrained('users', 'userId')->onDelete('set null');
             $table->unsignedTinyInteger('rating');
             $table->text('review')->nullable();
-            $table->timestamps();
         });
     }
 
@@ -25,6 +24,6 @@ public function up(): void
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_review');
+        Schema::dropIfExists('service_reviews');
     }
 };

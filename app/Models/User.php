@@ -15,14 +15,18 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $primaryKey = 'userId';
     protected $table = "users";
+    public $timestamps = false;
 
     protected $fillable = [
         'first_name',
         'last_name',
         'email',
         'hashed_password',
-        'phone',
         'user_type',
+        'address_line',
+        'city',
+        'postcode',
+        'country'
     ];
 
     protected $hidden = [
@@ -37,9 +41,20 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    //Helper functions
     public function getAuthPassword()
     {
         return $this->hashed_password;
+    }
+
+    public function getName() : string {
+        /* returns the full name of the user */
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function getAddress() : string {
+        /* returns the users full address */
+        return "{$this->address_line}, {$this->city}, {$this->postcode}, {$this->country}";
     }
 
 // Relationships
@@ -47,17 +62,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Order::class, 'userId', 'userId');
     }
-    public function shippingAddresses(): HasMany
-    {
-        return $this->hasMany(ShippingAddress::class, 'userId', 'userId');
-    }
     public function basket(): HasOne
     {
         return $this->hasOne(Basket::class, 'userId', 'userId');
     }
-    public function reviews(): HasMany
+    public function ProductReviews(): HasMany
     {
-         return $this->hasMany(Review::class, 'userId', 'userId');
+         return $this->hasMany(ProductReview::class, 'userId', 'userId');
     }
     public function serviceReviews(): HasMany
     {

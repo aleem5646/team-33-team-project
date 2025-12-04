@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('inventory_transactions', function (Blueprint $table) {
             $table->id('transactionId');
-            $table->foreignId('product_variantId')->constrained('product_variants', 'product_variantId');
-            $table->foreignId('userId')->nullable()->constrained('users', 'userId')->onDelete('set null');
-            $table->integer('quantity');
-            $table->string('transaction_type');
-            $table->string('reference')->nullable();
+            $table->foreignId('product_variantId')->nullable()->constrained('product_variants', 'product_variantId');
+            $table->foreignId('processed_by')->nullable()->constrained('users', 'userId')->onDelete('set null');
+            $table->unsignedInteger('quantity');
+            $table->enum('transaction_type', ['incoming', 'outgoing']);
             $table->timestamps();
         });
     }
