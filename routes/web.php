@@ -88,9 +88,7 @@ Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admi
 # this route group
 Route::group(['middleware'=>['auth','verified']], function (){
     #this /profile thing is a placeholder for now obvs
-    Route::get('/profile', function(){
-    return "Hi";
-    });
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 
 });
 
@@ -102,12 +100,8 @@ Route::get("/product-detail", function () {
 Route::get('/returns', [ReturnController::class, 'showForm'])->name('returns.form');
 Route::post('/returns', [ReturnController::class, 'submitForm'])->name('returns.submit');
 
-Route::get("/returns", function () {
-    return view("pages.return");
-});
-Route::get('/products', function () {
-    return view('pages.products');
-})->name('products.index');
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 use App\Http\Controllers\BasketController;
 
@@ -120,7 +114,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
 Route::post('/checkout', [CheckoutController::class, 'confirmOrder'])->name('order.confirm');
-
-Route::get("/returns", function () {
-    return view("pages.checkout");
-});

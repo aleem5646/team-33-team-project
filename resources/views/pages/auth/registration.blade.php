@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.customer-layout')
 @section('title','Create an Account')
 
 @section('content')

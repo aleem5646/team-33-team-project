@@ -22,7 +22,7 @@ class AuthManager extends Controller
         if (Auth::check()){
             return redirect(route('home'));
         }
-        return view('login');
+        return view('pages.auth.login');
     }
 
     function registration(){
@@ -30,7 +30,7 @@ class AuthManager extends Controller
         if (Auth::check()){
             return redirect(route('home'));
         }
-        return view('registration');
+        return view('pages.auth.registration');
 
         
     }
@@ -49,9 +49,7 @@ class AuthManager extends Controller
         if(Auth::attempt($credentials)){
             $user = Auth::user();
             Auth::logout();
-            if (!$user->hasVerifiedEmail()) {
-                return Response::json(['message' => 'You must verify your email first. Check your inbox for the verification link.'], 403);
-            }
+
             $code = random_int(100000, 999999);
             User2faCode::create([
                 'userId' => $user->userId,
@@ -113,7 +111,7 @@ class AuthManager extends Controller
 
     public function passwordRequest()
     {
-        return view('forgot-password');
+        return view('pages.auth.forgot-password');
     }
 
     public function passwordEmail(Request $request)
@@ -128,7 +126,7 @@ class AuthManager extends Controller
 
     public function passwordReset(Request $request, $token)
     {
-        return view('reset-password', [
+        return view('pages.auth.reset-password', [
             'request' => $request, 
             'token' => $token
         ]);
@@ -166,7 +164,7 @@ class AuthManager extends Controller
         if (!session()->has('2fa_user_id')) {
             return redirect(route('login'));
         }
-        return view('2fa-verify');
+        return view('pages.auth.2fa-verify');
     }
 
     public function verify2fa(Request $request)

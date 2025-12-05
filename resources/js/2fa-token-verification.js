@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
            
             const errorContainer = document.getElementById('login-error');
             if (errorContainer) {
-                errorContainer.textContent = 'A network error occurred. Please try again.';
+                errorContainer.textContent = error.message || 'A network error occurred. Please try again.';
             } else {
                 alert('A network error occurred. Please try again.');
             }

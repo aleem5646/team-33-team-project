@@ -40,7 +40,7 @@
     </div>
 
     <div class="mt-10 text-center">
-        <a 
+        <a href="{{ route('products.index') }}"
            class="inline-block bg-[#92b09a] text-white px-8 py-3 rounded-full uppercase font-bold tracking-wide transition duration-300 hover:bg-[#7a9480]">
             Shop Now
         </a>

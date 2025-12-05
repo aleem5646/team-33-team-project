@@ -24,12 +24,12 @@
                        class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
                         HOME
                     </a>
-                    <a href="#" 
+                    <a href="{{ route('products.index') }}" 
                        class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
                         PRODUCTS
                     </a>
                     <a href="{{ route('contact') }}" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
+                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
                         CONTACT
                     </a>
                     <a href="{{ route('about') }}" 
@@ -74,7 +74,7 @@
                         </button>
                         <div id="authProfileDropdown" 
                              class="hidden absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50 overflow-hidden">
-                            <a href="#" 
+                            <a href="{{ route('profile') }}" 
                                class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
                                 My Profile
                             </a>
