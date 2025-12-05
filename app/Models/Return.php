@@ -17,6 +17,11 @@ class ReturnModel extends Model
         'userId',
         'reason',
         'status',
+        'image_path',
+    ];
+
+    protected $casts = [
+        'image_path' => 'array',
     ];
 
     // Relationships

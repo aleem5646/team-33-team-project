@@ -123,3 +123,6 @@ Route::post('/checkout', [CheckoutController::class, 'confirmOrder'])->name('ord
     Route::put('/profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 Route::get('/order-confirmation', [CheckoutController::class, 'confirmation'])->name('order.confirmation');
 
+Route::get('/returns', [ReturnController::class, 'index'])->name('returns.index');
+Route::post('/returns/check-order', [ReturnController::class, 'checkOrder'])->name('returns.check_order');
+Route::post('/returns', [ReturnController::class, 'store'])->name('returns.submit');
