@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class ProductController extends Controller
 {
@@ -313,18 +316,69 @@ class ProductController extends Controller
     private function transformProduct($product)
     {
         $product['productId'] = $product['id'];
-        // Assuming images are stored in public/imgs/ directory
-        $product['image_url'] = 'imgs/' . $product['image'];
+        $product['image_url'] = $product['image']; // View adds 'imgs/' prefix
+
+        // Assign categories based on ID or Name
+        $categoryName = 'Home Goods';
+        $fashionIds = [8, 11, 13, 14, 23];
+        $beautyIds = [4, 21, 22, 24, 17];
+        $foodIds = [9];
+
+        if (in_array($product['id'], $fashionIds)) {
+            $categoryName = 'Fashion';
+        } elseif (in_array($product['id'], $beautyIds)) {
+            $categoryName = 'Beauty';
+        } elseif (in_array($product['id'], $foodIds)) {
+            $categoryName = 'Foods';
+        }
+
+        $product['category'] = (object)['name' => $categoryName, 'id' => $this->getCategoryId($categoryName)]; 
         return (object) $product;
     }
 
-    public function index()
+    private function getCategoryId($name) {
+        switch($name) {
+            case 'Fashion': return 1;
+            case 'Beauty': return 2;
+            case 'Home Goods': return 3;
+            case 'Foods': return 4;
+            default: return 3;
+        }
+    }
+
+    public function index(Request $request)
     {
-        // Convert array to collection of objects and map fields
-        $products = collect($this->products)->map(function($item) {
+        $productsCollection = collect($this->products)->map(function($item) {
             return $this->transformProduct($item);
         });
-        return view('pages.products', compact('products'));
+
+        // Search Logic
+        if ($request->filled('search')) {
+            $search = strtolower($request->input('search'));
+            $productsCollection = $productsCollection->filter(function ($item) use ($search) {
+                return str_contains(strtolower($item->name), $search) || 
+                       str_contains(strtolower($item->description), $search);
+            });
+        }
+
+        // Category Filter Logic
+        if ($request->filled('category')) {
+            $categoryId = $request->input('category');
+            $productsCollection = $productsCollection->filter(function ($item) use ($categoryId) {
+                return $item->category->id == $categoryId;
+            });
+        }
+
+        // Pagination
+        $perPage = 9;
+        $currentPage = Paginator::resolveCurrentPage() ?: 1;
+        $currentItems = $productsCollection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $products = new LengthAwarePaginator($currentItems, $productsCollection->count(), $perPage, $currentPage, [
+            'path' => Paginator::resolveCurrentPath(),
+            'query' => $request->query(),
+        ]);
+
+        return view('pages.auth.product-listing', compact('products'));
     }
 
     public function show($id)

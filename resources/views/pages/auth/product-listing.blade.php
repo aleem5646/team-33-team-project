@@ -7,27 +7,27 @@
         <div class="space-y-3">
             <div class="flex flex-wrap items-center gap-3">
                 <a href="{{ request()->fullUrlWithQuery(['category' => 1]) }}"
-                   class="px-5 py-5 text-2xl font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition"> FASHION
+                   class="px-4 py-2 text-sm font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition uppercase"> Fashion
                 </a>
                 <a href="{{ request()->fullUrlWithQuery(['category' => 2]) }}"
-                   class="px-5 py-5 text-2xl font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition"> BEAUTY
+                   class="px-4 py-2 text-sm font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition uppercase"> Beauty
                 </a>
                 <a href="{{ request()->fullUrlWithQuery(['category' => 3]) }}"
-                   class="px-5 py-5 text-2xl font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition"> HOME GOODS
+                   class="px-4 py-2 text-sm font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition uppercase"> Home Goods
                 </a>
                 <a href="{{ request()->fullUrlWithQuery(['category' => 4]) }}"
-                   class="px-5 py-5 text-2xl font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition">  FOODS
+                   class="px-4 py-2 text-sm font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition uppercase"> Foods
                 </a>
 
                 @if(request()->filled('category'))
                     <a href="{{ route('products.index', request()->except('category','page')) }}"
-                       class="flex items-center justify-center h-12 w-12 rounded-full bg-[#989d7f] text-black text-2xl font-bold hover:bg-[#7a7f63] transition"
-                       aria-label="Clear category"> ×
+                       class="flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-gray-600 text-sm font-bold hover:bg-gray-300 transition"
+                       aria-label="Clear category"> ✕
                     </a>
                 @endif
             </div>
         </div>
-        <div class="w-full md:w-80 space-y-3">
+        <div class="w-full md:w-72 space-y-3">
             <form action="{{ route('products.index') }}" method="GET" class="flex gap-2">
                 <input
                     type="text"
@@ -43,26 +43,26 @@
                 </button>
             </form>
 
-            <form action="{{ route('products.index') }}" method="GET" class="rounded border border-[#7a7f63] bg-white p-3 space-y-3">
+            <form action="{{ route('products.index') }}" method="GET" class="rounded border border-[#7a7f63] bg-white p-3 space-y-2">
                 <input type="hidden" name="search" value="{{ request('search') }}">
                 <input type="hidden" name="category" value="{{ request('category') }}">
                 <div class="flex items-center justify-between">
-                    <p class="text-sm font-semibold text-gray-900"> Filter </p>
-                    <button type="submit" class="text-sm font-semibold text-[#989d7f] hover:text-[#7a7f63]"> Apply
+                    <p class="text-xs font-bold text-gray-700 uppercase tracking-wide"> Filter </p>
+                    <button type="submit" class="text-xs font-semibold text-[#989d7f] hover:text-[#7a7f63]"> Apply
                     </button>
                 </div>
 
-                <div class="space-y-2">
-                    <label class="flex items-center gap-2 text-sm text-black-700">
+                <div class="space-y-1">
+                    <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
                        <input type="checkbox" name="filters[]" value="1"
                                {{ in_array(1, (array) request('filters')) ? 'checked' : '' }}
-                               class="rounded border-gray-300 text-green-600 focus:ring-green-500"> Fair Trade
+                               class="rounded border-gray-300 text-[#989d7f] focus:ring-[#989d7f]"> Fair Trade
                     </label>
 
-                    <label class="flex items-center gap-2 text-sm text-black-700">
+                    <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
                         <input type="checkbox" name="filters[]" value="2"
                                {{ in_array(2, (array) request('filters')) ? 'checked' : '' }}
-                               class="rounded border-gray-300 text-green-600 focus:ring-green-500"> Low Carbon
+                               class="rounded border-gray-300 text-[#989d7f] focus:ring-[#989d7f]"> Low Carbon
                     </label>
                 </div>
             </form>
