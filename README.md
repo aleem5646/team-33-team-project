@@ -34,22 +34,29 @@ Solara is a platform where you can find common everyday sustainble products in a
 
 Clone project repository 
 
-`git clone https://github.com/aleem5646/team-33-team-project.git`
+```bash
+git clone https://github.com/aleem5646/team-33-team-project.git
+```
 
 Navigate to the project folder
 
-`cd team-33-team-project`
+```bash
+cd team-33-team-project
+```
 
 Create a .env file and copy & paste the .env.example file into it and change the database and mail configurations
 
-`DB_CONNECTION=mysql
+```
+DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=root
-DB_PASSWORD=`
+DB_PASSWORD=
+```
 
-`MAIL_MAILER=smtp
+```
+MAIL_MAILER=smtp
 MAIL_SCHEME=null
 MAIL_HOST=sandbox.smtp.mailtrap.io
 MAIL_PORT=2525
@@ -57,19 +64,24 @@ MAIL_USERNAME=
 MAIL_PASSWORD=
 MAIL_FROM_ADDRESS="no-reply@solara.com"
 MAIL_FROM_NAME="Solara"
-MAIL_ENCRYPTION=tls`
+MAIL_ENCRYPTION=tls
+```
 
 Run command to create an app key for the project
 
-`php artisan key:generate`
+```php
+php artisan key:generate
+```
 
 **Mailtrap environment configuration**
 
 
-`1. Make an account on **[Mailtrap](https://mailtrap.io/home)** and open the dashboard panel. 
+```
+1. Make an account on **[Mailtrap](https://mailtrap.io/home)** and open the dashboard panel. 
 2. Navigate to Transactional->Sandboxes.
 3. Press on the settings icon of "My Sandbox".
-4. Copy and paste your credential username and password into the .env file`
+4. Copy and paste your credential username and password into the .env file
+```
 
 Download **[XAMPP](https://www.apachefriends.org/)** to run the project in your local environment
 
@@ -77,23 +89,35 @@ Open the XAMPP panel and start Apache and MySQL
 
 Run table migrations using the command:
 
-`php artisan migrate`
+```php
+php artisan migrate
+```
 
 Seeding the database
 
-`php artisan db:seed`
+```php
+php artisan db:seed
+```
 
 Run the following commands to download all the dependecies needed and the compiled assets
 
-`npm install`
+```javascript
+npm install
+```
 
-`composer install`
+```php
+composer install
+```
 
-`npm run build`
+```javascript
+npm run build
+```
 
 To start the website server use the command:
 
-`php artisan serve`
+```php
+php artisan serve
+```
 
 Go to the link http://127.0.0.1:8000/
 
