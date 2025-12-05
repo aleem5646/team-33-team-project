@@ -5,8 +5,17 @@ if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.match
     document.documentElement.classList.remove('dark');
 }
 
+function updateToggleButtons() {
+    const toggleButtons = document.querySelectorAll('.dark-mode-toggle');
+    const isDark = document.documentElement.classList.contains('dark');
+    toggleButtons.forEach(btn => {
+        btn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButtons = document.querySelectorAll('.dark-mode-toggle');
+    updateToggleButtons();
 
     toggleButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -21,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.theme = 'dark';
                 console.log('Switched to dark mode');
             }
+            updateToggleButtons();
         });
     });
 });

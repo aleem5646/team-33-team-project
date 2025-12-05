@@ -128,8 +128,7 @@
                     </script>
 
                     <button type="submit"
-                            class="mt-5 text-white py-2 px-4 rounded-md"
-                            style="background: #55603a; border: 2px solid black;">
+                            class="mt-5 text-white py-2 px-4 rounded-md bg-[#55603a] border-2 border-black">
                         Add to Cart
                     </button>
                 </form>

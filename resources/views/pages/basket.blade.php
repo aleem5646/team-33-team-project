@@ -4,17 +4,7 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-10">
-    <style>
-        /* Hide number input spinners */
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
-        }
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-    </style>
+
     <h1 class="text-3xl font-bold mb-8 text-center dark:text-white">Your Basket</h1>
 
     @if(session('success'))
@@ -60,7 +50,7 @@
                                 <div class="flex items-center border border-gray-300 dark:border-gray-600 rounded">
                                     <button type="button" onclick="decrementQuantity({{ $id }})" class="px-3 py-1 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">-</button>
                                     <input type="number" name="quantity" id="quantity-{{ $id }}" value="{{ $item['quantity'] }}" min="1" 
-                                           class="w-12 text-center border-none focus:ring-0 p-1 appearance-none dark:bg-gray-800 dark:text-white" onchange="this.form.submit()">
+                                           class="w-12 text-center border-none focus:ring-0 p-1 appearance-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none dark:bg-gray-800 dark:text-white" onchange="this.form.submit()">
                                     <button type="button" onclick="incrementQuantity({{ $id }})" class="px-3 py-1 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">+</button>
                                 </div>
                             </form>

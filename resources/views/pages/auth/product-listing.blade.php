@@ -59,20 +59,20 @@
             </form>
 
             <!-- Filters & Sort -->
-            <form action="{{ route('products.index') }}" method="GET" class="w-full md:w-72 rounded border border-[#7a7f63] bg-white p-3 space-y-3">
+            <form action="{{ route('products.index') }}" method="GET" class="w-full md:w-72 rounded border border-[#7a7f63] bg-white dark:bg-gray-800 dark:border-gray-600 p-3 space-y-3">
                 <input type="hidden" name="search" value="{{ request('search') }}">
                 <input type="hidden" name="category" value="{{ request('category') }}">
 
                 <div class="flex items-center justify-between border-b border-gray-200 pb-2">
-                    <p class="text-xs font-bold text-gray-700 uppercase tracking-wide"> Filter & Sort </p>
+                    <p class="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide"> Filter & Sort </p>
                     <button type="submit" class="text-xs font-semibold text-[#989d7f] hover:text-[#7a7f63]"> Apply
                     </button>
                 </div>
 
                 <!-- Sort By -->
                 <div>
-                    <label class="block text-xs font-medium text-gray-700 mb-1">Sort By Price</label>
-                    <select name="sort" class="w-full rounded border-gray-300 text-sm focus:ring-[#989d7f] focus:border-[#989d7f]">
+                    <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Sort By Price</label>
+                    <select name="sort" class="w-full rounded border-gray-300 text-sm focus:ring-[#989d7f] focus:border-[#989d7f] dark:bg-gray-700 dark:text-white dark:border-gray-600">
                         <option value="">Default</option>
                         <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Low to High</option>
                         <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>High to Low</option>
@@ -81,17 +81,17 @@
 
                 <!-- Filters -->
                 <div class="space-y-1">
-                    <p class="text-xs font-medium text-gray-700 mb-1">Attributes</p>
-                    <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                    <p class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Attributes</p>
+                    <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
                        <input type="checkbox" name="filters[]" value="1"
                                {{ in_array(1, (array) request('filters')) ? 'checked' : '' }}
-                               class="rounded border-gray-300 text-[#989d7f] focus:ring-[#989d7f]"> Fair Trade
+                               class="rounded border-gray-300 text-[#989d7f] focus:ring-[#989d7f] dark:bg-gray-700 dark:border-gray-600"> Fair Trade
                     </label>
 
-                    <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                    <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
                         <input type="checkbox" name="filters[]" value="2"
                                {{ in_array(2, (array) request('filters')) ? 'checked' : '' }}
-                               class="rounded border-gray-300 text-[#989d7f] focus:ring-[#989d7f]"> Low Carbon
+                               class="rounded border-gray-300 text-[#989d7f] focus:ring-[#989d7f] dark:bg-gray-700 dark:border-gray-600"> Low Carbon
                     </label>
                 </div>
             </form>
