@@ -1,61 +1,157 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><svg><image width="108" height="124" xlink:href="data:image/png;base64,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"/></svg></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Team 33 Project
 
-## About Laravel
+A university minimal viable product for the CS2TP module
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Solara
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Solara is a platform where you can find common everyday sustainble products in a range of categories which originate from a variety of different ethical backgrounds such as Fair Trade, Low Carbon Impact etc. This e-commerce site provides an intuitive user-friendly interface when exploring throughout the site.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
 
-## Learning Laravel
+- **User Authentication**: A robust user registration/login system with 2FA verification implementation.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Search Filtering**: A feature that filters products being browsing by selecting on a filter name.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **User Profile**: A feature that lets users view their accounts and make changes to their personal information such as adding/editing/removing details.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Service Reviews**: Users can write reviews on services that the platform has offered.
 
-## Laravel Sponsors
+- **Product Returns**: A feature allowing users to return products which they have previously ordered.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Basket**: Users can add/edit/remove items to their basket.
 
-### Premium Partners
+- **Contacting**: Users can submit a conctact form.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- **Product Reviews**: Users can write reviews on products.
 
-## Contributing
+- **User Interface**: The site provides a responsive user interface.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Ordering System**: An ordering system which submits the users basket to the checkout where they can fill in the form to create an order
 
-## Code of Conduct
+## Local Usage
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Clone project repository 
 
-## Security Vulnerabilities
+```bash
+git clone https://github.com/aleem5646/team-33-team-project.git
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Navigate to the project folder
 
-## License
+```bash
+cd team-33-team-project
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Create a .env file and copy & paste the .env.example file into it and change the database and mail configurations
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+```
+MAIL_MAILER=smtp
+MAIL_SCHEME=null
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_FROM_ADDRESS="no-reply@solara.com"
+MAIL_FROM_NAME="Solara"
+MAIL_ENCRYPTION=tls
+```
+
+Run command to create an app key for the project
+
+```php
+php artisan key:generate
+```
+
+**Mailtrap environment configuration**
+
+
+```
+1. Make an account on **[Mailtrap](https://mailtrap.io/home)** and open the dashboard panel. 
+2. Navigate to Transactional->Sandboxes.
+3. Press on the settings icon of "My Sandbox".
+4. Copy and paste your credential username and password into the .env file
+```
+
+Download **[XAMPP](https://www.apachefriends.org/)** to run the project in your local environment
+
+Open the XAMPP panel and start Apache and MySQL
+
+Run table migrations using the command:
+
+```php
+php artisan migrate
+```
+
+Seeding the database
+
+```php
+php artisan db:seed
+```
+
+Run the following commands to download all the dependecies needed and the compiled assets
+
+```javascript
+npm install
+```
+
+```php
+composer install
+```
+
+```javascript
+npm run build
+```
+
+To start the website server use the command:
+
+```php
+php artisan serve
+```
+
+Go to the link http://127.0.0.1:8000/
+
+**When registering an account on the site a verification code will be sent to your mailtrap account, you simply have to navigate to Transactional->Sandbox->My Sandbox and the verifaction code will appear on the left side**
+
+## Technologies
+
+### Frontend and Backend Stacks
+
+![Static Badge](https://img.shields.io/badge/logo-v12-cololor?logo=laravel&label=laravel&color=%23FF2D20)
+![Static Badge](https://img.shields.io/badge/logo--cololor?logo=javascript&label=javascript&color=%23F7DF1E)
+![Static Badge](https://img.shields.io/badge/logo-v4.1.17-color?logo=tailwindcss&label=tailwindcss&color=%2306B6D4)
+![Static Badge](https://img.shields.io/badge/logo-v8.0-color?logo=mysql&label=mysql&color=%234479A1)
+![Static Badge](https://img.shields.io/badge/logo-v8.3-color?logo=php&label=php&color=%23777BB4)
+
+**[Laravel](https://laravel.com/)** is a web application framework with expressive, elegant syntax. Laravel takes the pain out of development by easing common tasks used in many web projects.
+
+JavaScript is a text-based scripting language or programming language used on both the server-side and client-side to create engaging website elements,
+
+**[Tailwind CSS](https://tailwindcss.com/)** is a utility-first CSS framework for rapidly building modern websites without ever leaving your HTML.
+
+**[MySQL](https://www.mysql.com/)** is an open-source relational database management system.
+
+### Package Managers
+
+![Static Badge](https://img.shields.io/badge/logo-v24.11.1-color?logo=nodedotjs&label=npm&color=%235FA04E)
+![Static Badge](https://img.shields.io/badge/logo-v2.9.2-color?logo=composer&label=composer&color=%23885630)
+
+**[NPM](https://nodejs.org/en)** is a package manager for the JavaScript programming language
+
+**[Composer](https://getcomposer.org/)** A Dependency Manager for PHP
+
+### Build Tool
+
+![Static Badge](https://img.shields.io/badge/label-v7.2.6-color?logo=vite&label=vite&color=%23646CFF)
+
+**[Vite](https://vite.dev/)** is a blazing fast frontend build tool powering the next generation of web applications.
