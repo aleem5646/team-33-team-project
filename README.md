@@ -40,20 +40,36 @@ Navigate to the project folder
 
 `cd team-33-team-project`
 
-Create a .env file and copy & paste the .env.example file into it and change the database configuration
+Create a .env file and copy & paste the .env.example file into it and change the database and mail configurations
 
-`
-DB_CONNECTION=mysql
+`DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=root
-DB_PASSWORD=
-`
+DB_PASSWORD=`
+
+`MAIL_MAILER=smtp
+MAIL_SCHEME=null
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_FROM_ADDRESS="no-reply@solara.com"
+MAIL_FROM_NAME="Solara"
+MAIL_ENCRYPTION=tls`
 
 Run command to create an app key for the project
 
 `php artisan key:generate`
+
+**Mailtrap environment configuration**
+
+
+`1. Make an account on **[Mailtrap](https://mailtrap.io/home)** and open the dashboard panel. 
+2. Navigate to Transactional->Sandboxes.
+3. Press on the settings icon of "My Sandbox".
+4. Copy and paste your credential username and password into the .env file`
 
 Download **[XAMPP](https://www.apachefriends.org/)** to run the project in your local environment
 
@@ -80,6 +96,8 @@ To start the website server use the command:
 `php artisan serve`
 
 Go to the link http://127.0.0.1:8000/
+
+**When registering an account on the site a verification code will be sent to your mailtrap account, you simply have to navigate to Transactional->Sandbox->My Sandbox and the verifaction code will appear on the left side**
 
 ## Technologies
 
