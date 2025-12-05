@@ -12,7 +12,7 @@
                  alt="Ethically Sourced Goods"
                  class="w-full h-auto object-cover min-h-[250px] transition-transform duration-300 hover:scale-105">
             
-            <div class="p-4 font-bold">
+            <div class="p-4 font-bold text-black">
                 Ethically Sourced Goods!
             </div>
         </div>
@@ -22,7 +22,7 @@
                  alt="Sustainable Living"
                  class="w-full h-auto object-cover min-h-[250px] transition-transform duration-300 hover:scale-105">
             
-            <div class="p-4 font-bold">
+            <div class="p-4 font-bold text-black">
                 Sustainable Living!
             </div>
         </div>
@@ -32,7 +32,7 @@
                  alt="Low Carbon Shipping"
                  class="w-full h-auto object-cover min-h-[250px] transition-transform duration-300 hover:scale-105">
             
-            <div class="p-4 font-bold">
+            <div class="p-4 font-bold text-black">
                 Low Carbon Shipping!
             </div>
         </div>

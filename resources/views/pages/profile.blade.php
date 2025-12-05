@@ -7,8 +7,8 @@
     <div class="flex flex-col lg:flex-row gap-8 justify-center">
         
 
-        <div class="lg:w-1/3 bg-[#969f82] p-8 rounded shadow-md text-black h-fit min-h-[400px]">
-            <h2 class="text-xl font-bold mb-6 text-center uppercase border-b border-black pb-2">Profile Info</h2>
+        <div class="lg:w-1/3 bg-[#969f82] dark:bg-gray-800 p-8 rounded shadow-md text-black dark:text-white h-fit min-h-[400px]">
+            <h2 class="text-xl font-bold mb-6 text-center uppercase border-b border-black dark:border-gray-600 pb-2">Profile Info</h2>
             
             <div class="space-y-4">
                 <div>
@@ -31,15 +31,15 @@
         </div>
 
 
-        <div class="lg:w-1/3 bg-[#969f82] p-8 rounded shadow-md text-black h-fit min-h-[400px]">
-            <h2 class="text-xl font-bold mb-6 text-center uppercase border-b border-black pb-2">Order History List</h2>
+        <div class="lg:w-1/3 bg-[#969f82] dark:bg-gray-800 p-8 rounded shadow-md text-black dark:text-white h-fit min-h-[400px]">
+            <h2 class="text-xl font-bold mb-6 text-center uppercase border-b border-black dark:border-gray-600 pb-2">Order History List</h2>
             
             <div class="space-y-4 overflow-y-auto max-h-[300px] pr-2">
                 @if($orders->isEmpty())
                     <p class="text-center italic">No orders found.</p>
                 @else
                     @foreach($orders as $order)
-                        <div class="bg-[#8f9877] p-3 rounded border border-black/10">
+                        <div class="bg-[#8f9877] dark:bg-gray-700 p-3 rounded border border-black/10 dark:border-gray-600">
                             <p class="font-bold">Order #{{ $order->orderId }}</p>
                             <p class="text-sm">Date: {{ $order->created_at->format('d M Y') }}</p>
                             <p class="text-sm">Total: £{{ number_format($order->total_price, 2) }}</p>
@@ -69,8 +69,8 @@
     </div>
 
     <div class="text-center mt-8">
-        <p class="text-gray-700">
-            To return an item click <a href="{{ route('returns.form') }}" class="underline font-bold hover:text-[#3e4c24]">here</a>.
+        <p class="text-gray-700 dark:text-gray-300">
+            To return an item click <a href="{{ route('returns.form') }}" class="underline font-bold hover:text-[#3e4c24] dark:text-green-400 dark:hover:text-green-300">here</a>.
         </p>
     </div>
 </div>

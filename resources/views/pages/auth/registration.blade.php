@@ -3,9 +3,9 @@
 
 @section('content')
 <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="w-full max-w-md p-8 space-y-6 bg-white shadow-md rounded-lg">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
 
-        <h2 class="text-3xl font-bold text-center text-gray-900">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white">
             Create an Account
         </h2>
 
@@ -28,41 +28,41 @@
             @csrf
             
             <div>
-                <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
+                <label for="first_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">First name</label>
                 <div class="mt-1">
                     <input id="first_name" name="first_name" type="text" autocomplete="given-name" required value="{{ old('first_name') }}"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
-                                  focus:outline-none focus:ring-green-500 focus:border-green-500">
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white">
                 </div>
                 <div id="first_name-error" class="text-red-600 text-sm mt-1"></div>
             </div>
             
             <div>
-                <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
+                <label for="last_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Last name</label>
                 <div class="mt-1">
                     <input id="last_name" name="last_name" type="text" autocomplete="family-name" required value="{{ old('last_name') }}"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
-                                  focus:outline-none focus:ring-green-500 focus:border-green-500">
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white">
                 </div>
                 <div id="last_name-error" class="text-red-600 text-sm mt-1"></div>
             </div>
 
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email address</label>
                 <div class="mt-1">
                     <input id="email" name="email" type="email" autocomplete="email" required value="{{ old('email') }}"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
-                                  focus:outline-none focus:ring-green-500 focus:border-green-500">
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white">
                 </div>
                 <div id="email-error" class="text-red-600 text-sm mt-1"></div>
             </div>
 
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
                 <div class="mt-1 relative">
                     <input id="password" name="hashed_password" type="password" autocomplete="new-password" required
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
-                                focus:outline-none focus:ring-green-500 focus:border-green-500">
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400
+                                focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white">
                     <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500" data-toggle-password-for="password">
                         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
@@ -78,11 +78,11 @@
             </div>
 
             <div>
-                <label for="hashed_password_confirmation" class="block text-sm font-medium text-gray-700 font-medium">Confirm Password</label>
+                <label for="hashed_password_confirmation" class="block text-sm font-medium text-gray-700 dark:text-gray-300 font-medium">Confirm Password</label>
                 <div class="mt-1 relative">
                     <input id="hashed_password_confirmation" name="hashed_password_confirmation" type="password" autocomplete="new-password" required
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
-                                  focus:outline-none focus:ring-green-500 focus:border-green-500">
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white">
                     <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500" data-toggle-password-for="hashed_password_confirmation">
                         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
@@ -106,7 +106,7 @@
             </div>
         </form>
 
-        <div class="text-sm text-center text-gray-600">
+        <div class="text-sm text-center text-gray-600 dark:text-gray-400">
             Already have an account?
             <a href="{{ route('login') }}" class="font-medium text-green-600 hover:text-green-500">
                 Log In Here.

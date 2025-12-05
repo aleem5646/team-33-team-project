@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     @vite(["resources/css/app.css", "resources/js/app.js"])
     <title>@yield('title')</title>
 </head>
-<body class="m-0 p-0 min-h-screen flex flex-col font-sans">
+<body class="m-0 p-0 min-h-screen flex flex-col font-sans dark:bg-gray-900 dark:text-white">
     @include('include.header')
 
     <div class="flex-1 flex flex-col">
@@ -19,18 +26,18 @@
 
 
 
-    <div id="2fa-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div id="2fa-modal" class="hidden fixed inset-0 overflow-y-auto h-full w-full z-50 flex items-center justify-center pointer-events-none">
+        <div class="relative p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800 pointer-events-auto">
             <div class="mt-3 text-center">
-                <h3 class="text-lg leading-6 font-bold text-gray-900">Two-Factor Authentication</h3>
+                <h3 class="text-lg leading-6 font-bold text-gray-900 dark:text-white">Two-Factor Authentication</h3>
                 <div class="mt-2 px-7 py-3">
-                    <p class="text-sm text-gray-500 mb-4">
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
                         Please enter the 6-digit code sent to your email.
                     </p>
                     <form id="2fa-form">
                         <input type="hidden" id="2fa_user_id" name="userId">
                         <input type="text" id="2fa_code" name="code" 
-                               class="mt-2 px-3 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-green-500 focus:border-green-500" 
+                               class="mt-2 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md w-full focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white" 
                                placeholder="Enter 6-digit Code" required>
                         <p id="2fa-error" class="text-red-500 text-sm mt-2 font-medium"></p>
                         <div class="items-center px-4 py-3 mt-4">

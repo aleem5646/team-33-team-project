@@ -14,7 +14,9 @@
     }
     .checkout-left { flex: 2; }
     .checkout-right { 
-        flex: 1; background: #dee1d4; padding: 20px; 
+        flex: 1; 
+        /* background removed here to allow Tailwind override */
+        padding: 20px; 
         border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
     }
 
@@ -62,36 +64,36 @@
             <form id="checkoutForm" method="POST" action="{{ route('order.confirm') }}">
                 @csrf
 
-                <label for="email">Email*</label>
-                <input type="email" id="email" name="email" value="{{ Auth::user()->email ?? '' }}" readonly class="bg-gray-100 cursor-not-allowed" required>
+                <label for="email" class="dark:text-white">Email*</label>
+                <input type="email" id="email" name="email" value="{{ Auth::user()->email ?? '' }}" readonly class="bg-gray-100 dark:bg-gray-700 dark:text-white dark:border-gray-600 cursor-not-allowed" required>
 
-                <label>Shipping Address</label>
+                <label class="dark:text-white">Shipping Address</label>
                 <div class="row">
                     <div class="half">
-                        <input type="text" name="first_name" placeholder="First name" required>
+                        <input type="text" name="first_name" placeholder="First name" required class="dark:bg-gray-700 dark:text-white dark:border-gray-600">
                     </div>
                     <div class="half">
-                        <input type="text" name="last_name" placeholder="Last name" required>
+                        <input type="text" name="last_name" placeholder="Last name" required class="dark:bg-gray-700 dark:text-white dark:border-gray-600">
                     </div>
                 </div>
 
-                <input type="text" name="address" placeholder="Address" required>
-                <input type="text" name="apartment" placeholder="Apartment, suite, etc. (optional)">
+                <input type="text" name="address" placeholder="Address" required class="dark:bg-gray-700 dark:text-white dark:border-gray-600">
+                <input type="text" name="apartment" placeholder="Apartment, suite, etc. (optional)" class="dark:bg-gray-700 dark:text-white dark:border-gray-600">
                 
                 <div class="row">
                     <div class="half">
-                        <input type="text" name="city" placeholder="City" required>
+                        <input type="text" name="city" placeholder="City" required class="dark:bg-gray-700 dark:text-white dark:border-gray-600">
                     </div>
                     <div class="half">
-                        <input type="text" name="postcode" placeholder="Postcode" required>
+                        <input type="text" name="postcode" placeholder="Postcode" required class="dark:bg-gray-700 dark:text-white dark:border-gray-600">
                     </div>
                 </div>
 
-                <input type="tel" name="phone" placeholder="Phone number (optional)" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <input type="tel" name="phone" placeholder="Phone number (optional)" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="dark:bg-gray-700 dark:text-white dark:border-gray-600">
 
                 <div class="checkbox">
                     <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms">I confirm I have read all the terms.</label>
+                    <label for="terms" class="dark:text-white">I confirm I have read all the terms.</label>
                 </div>
 
                 <button type="submit" class="confirm-btn" @if($total <= 0) disabled style="background-color: #ccc; cursor: not-allowed;" @endif>Confirm Order</button>
@@ -99,7 +101,7 @@
         </div>
 
         <!-- Right side: Order Summary -->
-        <div class="checkout-right summary-box">
+        <div class="checkout-right summary-box bg-[#dee1d4] dark:bg-gray-800 dark:text-white">
             <h3>Summary of the Order</h3>
             @foreach($cart as $item)
                 <div class="summary-item">

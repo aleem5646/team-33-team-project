@@ -3,9 +3,9 @@
 
 @section('content')
 <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="w-full max-w-md p-8 space-y-6 bg-white shadow-md rounded-lg">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
         
-        <h2 class="text-3xl font-bold text-center text-gray-900">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white">
             Login
         </h2>
 
@@ -35,20 +35,20 @@
             <div id="login-error" class="text-red-600 text-sm -my-2 text-center" role="alert"></div>
             
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email address</label>
                 <div class="mt-1">
                     <input id="email" name="email" type="email" autocomplete="email" required
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
-                                  focus:outline-none focus:ring-green-500 focus:border-green-500">
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white">
                 </div>
             </div>
 
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
                 <div class="mt-1">
                     <input id="password" name="hashed_password" type="password" autocomplete="current-password" required
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
-                                  focus:outline-none focus:ring-green-500 focus:border-green-500">
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white">
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
             </div>
         </form>
 
-        <div class="text-sm text-center text-gray-600">
+        <div class="text-sm text-center text-gray-600 dark:text-gray-400">
             Don't have an account?
             <a href="{{ route('registration') }}" class="font-medium text-green-600 hover:text-green-500">
                 Sign Up Here.

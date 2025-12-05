@@ -17,12 +17,12 @@
         </div>
     @endif
 
-    <div class="bg-white border border-[#ccc] rounded-lg shadow-md p-5">
+    <div class="bg-white dark:bg-gray-800 border border-[#ccc] dark:border-gray-700 rounded-lg shadow-md p-5">
 
         <div class="flex flex-col md:flex-row gap-5 mb-8">
 
             <!-- Left: Product Image -->
-            <div class="flex-1 bg-[#dee1d4] rounded-lg p-5 flex items-center justify-center">
+            <div class="flex-1 bg-[#dee1d4] dark:bg-gray-700 rounded-lg p-5 flex items-center justify-center">
                 <img src="{{ asset($product->image_url) }}"
                      alt="{{ $product->name }}"
                      class="rounded-md object-contain w-[300px] h-auto">
@@ -32,10 +32,10 @@
             <div class="flex-1 flex flex-col">
 
                 <!-- Product Name -->
-                <h1 class="mb-2 text-2xl font-bold">{{ $product->name }}</h1>
+                <h1 class="mb-2 text-2xl font-bold dark:text-white">{{ $product->name }}</h1>
 
                 <!-- Product Price -->
-                <p class="text-[#69714a] text-xl font-bold mb-2">£{{ number_format($product->price, 2) }}</p>
+                <p class="text-[#69714a] dark:text-[#a3b18a] text-xl font-bold mb-2">£{{ number_format($product->price, 2) }}</p>
 
                 <!-- Product Rating -->
                 <p class="text-[#d4af37] mb-4">
@@ -48,8 +48,8 @@
 
                 <!-- Product Information -->
                 <div class="mb-5">
-                    <h3 class="font-bold mb-1">Information</h3>
-                    <p>{{ $product->information }}</p>
+                    <h3 class="font-bold mb-1 dark:text-white">Information</h3>
+                    <p class="dark:text-gray-300">{{ $product->information }}</p>
                     
                     @if($product->filters->count() > 0)
                         <div class="mt-3 flex flex-wrap gap-2">
@@ -69,8 +69,8 @@
 
                 <!-- Product Description -->
                 <div class="mb-5">
-                    <h3 class="font-bold mb-1">Description</h3>
-                    <p>{{ $product->description }}</p>
+                    <h3 class="font-bold mb-1 dark:text-white">Description</h3>
+                    <p class="dark:text-gray-300">{{ $product->description }}</p>
                 </div>
 
                 <!-- Add to Cart Form -->
@@ -81,19 +81,19 @@
 
                     <!-- Quantity -->
                     <div class="mb-5">
-                        <label for="quantity" class="block mt-3 font-bold">Quantity:</label>
+                        <label for="quantity" class="block mt-3 font-bold dark:text-white">Quantity:</label>
                         <input type="number"
                                id="quantity"
                                name="quantity"
                                value="1"
                                min="1"
-                               class="w-[60px] p-2 mt-1 border border-[#ccc] rounded-md">
+                               class="w-[60px] p-2 mt-1 border border-[#ccc] dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white">
                     </div>
 
                     <!-- Carbon Impact -->
                     @if($product->carbon_impact)
                         <div class="mb-5">
-                            <h3 class="font-bold mb-1">Estimated Carbon Impact</h3>
+                            <h3 class="font-bold mb-1 dark:text-white">Estimated Carbon Impact</h3>
                             <p class="text-green-700 font-semibold">
                                 <span id="carbon-display">{{ $product->carbon_impact }}</span> kg CO2e
                             </p>
@@ -139,11 +139,11 @@
 
         <!-- Reviews Section -->
         <div class="border-t border-[#ccc] pt-5">
-            <h3 class="font-bold text-lg mb-3">Reviews</h3>
+            <h3 class="font-bold text-lg mb-3 dark:text-white">Reviews</h3>
             @foreach($product->reviews as $review)
                 <p>
                     <span class="text-[#d4af37]">{{ str_repeat('★', $review->rating) . str_repeat('☆', 5 - $review->rating) }}</span>
-                    - <span class="text-black">{{ $review->review }}</span>
+                    - <span class="text-black dark:text-gray-300">{{ $review->review }}</span>
                 </p>
             @endforeach
         </div>

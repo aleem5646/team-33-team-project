@@ -8,34 +8,34 @@
         <p class="text-green-600 mb-4 text-base font-bold">{{ session('status') }}</p>
     @endif
 
-    <form id="returnForm" class="bg-[#f9f9f9] p-6 rounded-xl shadow-sm flex flex-col md:flex-row gap-6">
+    <form id="returnForm" class="bg-[#f9f9f9] dark:bg-gray-800 p-6 rounded-xl shadow-sm flex flex-col md:flex-row gap-6">
         @csrf
 
         {{-- Left side: text fields --}}
         <div class="flex-1 flex flex-col gap-4">
             <div>
-                <label for="order_number" class="block font-bold text-base text-gray-800 mb-1">Return An Item</label>
+                <label for="order_number" class="block font-bold text-base text-gray-800 dark:text-gray-300 mb-1">Return An Item</label>
                 <div class="flex gap-2">
-                    <input type="text" name="order_number" id="order_number" required placeholder="Enter Order Number" class="flex-1 p-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-[#69714a]">
+                    <input type="text" name="order_number" id="order_number" required placeholder="Enter Order Number" class="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-base focus:outline-none focus:border-[#69714a] dark:bg-gray-700 dark:text-white">
                     <button type="button" id="checkOrderBtn" class="bg-[#989d7f] text-white px-6 py-3 rounded-lg text-base font-semibold hover:bg-[#7a7f63] transition-colors">Check</button>
                 </div>
                 <p id="orderMsg" class="text-sm mt-1"></p>
             </div>
 
             {{-- Items Container (Hidden by default) --}}
-            <div id="itemsContainer" class="hidden border border-gray-300 p-4 rounded-xl bg-white shadow-sm">
-                <p class="font-bold mb-3 text-base text-gray-800">Select Item to Return:</p>
+            <div id="itemsContainer" class="hidden border border-gray-300 dark:border-gray-600 p-4 rounded-xl bg-white dark:bg-gray-700 shadow-sm">
+                <p class="font-bold mb-3 text-base text-gray-800 dark:text-white">Select Item to Return:</p>
                 <div id="itemsList" class="space-y-2"></div>
             </div>
 
             <div>
-                <label for="comment" class="block font-bold text-base text-gray-800 mb-1">Reason for Return</label>
-                <textarea name="comment" id="comment" rows="5" required placeholder="Please describe why you are returning this item..." class="w-full p-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-[#69714a] resize-none"></textarea>
+                <label for="comment" class="block font-bold text-base text-gray-800 dark:text-gray-300 mb-1">Reason for Return</label>
+                <textarea name="comment" id="comment" rows="5" required placeholder="Please describe why you are returning this item..." class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-base focus:outline-none focus:border-[#69714a] resize-none dark:bg-gray-700 dark:text-white"></textarea>
             </div>
 
             <label class="flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-100 rounded-lg transition-colors">
                 <input type="checkbox" name="terms" id="terms" required class="w-5 h-5 accent-[#69714a]">
-                <span class="text-base text-gray-700">I confirm I have read all the terms.</span>
+                <span class="text-base text-gray-700 dark:text-gray-300">I confirm I have read all the terms.</span>
             </label>
 
             <button type="submit" class="bg-[#69714a] text-white w-full py-3 rounded-lg text-lg font-bold hover:bg-[#555b3e] transition-all shadow-md hover:shadow-lg mt-2">Submit Return Request</button>
@@ -43,14 +43,14 @@
         </div>
 
         {{-- Right side: upload box --}}
-        <div class="flex-1 bg-[#dee1d4] border-2 border-[#ccc] rounded-xl p-4 shadow-inner min-h-[450px] flex flex-col relative overflow-hidden" id="uploadContainer">
+        <div class="flex-1 bg-[#dee1d4] dark:bg-gray-700 border-2 border-[#ccc] dark:border-gray-600 rounded-xl p-4 shadow-inner min-h-[450px] flex flex-col relative overflow-hidden" id="uploadContainer">
             
             {{-- Initial Label --}}
             <div id="uploadLabel" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                 <label for="fileInput" class="cursor-pointer flex flex-col items-center justify-center w-full h-full border-4 border-dashed border-[#989d7f]/50 rounded-xl hover:bg-white/20 transition-all group">
                     <svg class="w-16 h-16 text-[#69714a] mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                    <span class="block font-bold text-xl text-[#4a503a] mb-1">Upload Proof (optional)</span>
-                    <span class="text-[#69714a] text-base mb-4">Images or PDF (Max 2MB)</span>
+                    <span class="block font-bold text-xl text-[#4a503a] dark:text-white mb-1">Upload Proof (optional)</span>
+                    <span class="text-[#69714a] dark:text-gray-300 text-base mb-4">Images or PDF (Max 2MB)</span>
                     <span class="bg-[#69714a] text-white px-6 py-2 text-base font-semibold rounded-full shadow-md group-hover:bg-[#555b3e] transition-colors">Browse Files</span>
                 </label>
             </div>
@@ -225,12 +225,12 @@
                 } else {
                     data.items.forEach(item => {
                         const div = document.createElement('div');
-                        div.className = 'flex items-center gap-3 mb-2 p-3 border border-gray-200 hover:bg-gray-50 rounded-md transition-colors';
+                        div.className = 'flex items-center gap-3 mb-2 p-3 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-md transition-colors';
                         div.innerHTML = `
                             <input type="radio" name="order_item_id" value="${item.id}" required id="item_${item.id}" class="w-5 h-5 accent-[#69714a]">
                             <label for="item_${item.id}" class="text-base cursor-pointer w-full flex flex-col">
-                                <span class="font-bold text-gray-800">${item.name}</span> 
-                                <span class="text-gray-500 text-sm">Price: £${item.price} &bull; Qty: ${item.quantity}</span>
+                                <span class="font-bold text-gray-800 dark:text-white">${item.name}</span> 
+                                <span class="text-gray-500 dark:text-gray-300 text-sm">Price: £${item.price} &bull; Qty: ${item.quantity}</span>
                             </label>
                         `;
                         itemsList.appendChild(div);

@@ -15,7 +15,7 @@
             -moz-appearance: textfield;
         }
     </style>
-    <h1 class="text-3xl font-bold mb-8 text-center">Your Basket</h1>
+    <h1 class="text-3xl font-bold mb-8 text-center dark:text-white">Your Basket</h1>
 
     @if(session('success'))
         <div class="bg-green-100 text-green-800 p-3 mb-4 border border-green-200 rounded">
@@ -31,7 +31,7 @@
 
     @if(empty($cart))
         <div class="text-center py-10">
-            <p class="text-xl text-gray-600">Your basket is empty.</p>
+            <p class="text-xl text-gray-600 dark:text-gray-400">Your basket is empty.</p>
             <a href="{{ route('products.index') }}" class="mt-4 inline-block bg-[#4a5b46] text-white px-6 py-2 rounded hover:bg-[#3a4837] transition">Continue Shopping</a>
         </div>
     @else
@@ -39,7 +39,7 @@
             <!-- Left Column: Basket Items -->
             <div class="lg:w-2/3">
                 @foreach($cart as $id => $item)
-                    <div class="flex flex-col sm:flex-row items-center gap-6 border-b border-gray-200 py-6">
+                    <div class="flex flex-col sm:flex-row items-center gap-6 border-b border-gray-200 dark:border-gray-700 py-6">
                         <!-- Product Image -->
                         <div class="w-32 h-32 flex-shrink-0">
                             <img src="{{ asset($item['image']) }}" 
@@ -49,19 +49,19 @@
 
                         <!-- Product Details -->
                         <div class="flex-grow text-center sm:text-left">
-                            <h3 class="text-lg font-bold text-[#4a5b46]">{{ $item['name'] }}</h3>
-                            <p class="text-lg font-semibold mt-1">£{{ number_format($item['price'], 2) }}</p>
+                            <h3 class="text-lg font-bold text-[#4a5b46] dark:text-[#a3b18a]">{{ $item['name'] }}</h3>
+                            <p class="text-lg font-semibold mt-1 dark:text-white">£{{ number_format($item['price'], 2) }}</p>
                         </div>
 
                         <!-- Quantity & Remove -->
                         <div class="flex flex-col items-center gap-3">
                             <form action="{{ route('basket.update', $id) }}" method="POST" class="flex items-center">
                                 @csrf
-                                <div class="flex items-center border border-gray-300 rounded">
-                                    <button type="button" onclick="decrementQuantity({{ $id }})" class="px-3 py-1 text-gray-600 hover:bg-gray-100">-</button>
+                                <div class="flex items-center border border-gray-300 dark:border-gray-600 rounded">
+                                    <button type="button" onclick="decrementQuantity({{ $id }})" class="px-3 py-1 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">-</button>
                                     <input type="number" name="quantity" id="quantity-{{ $id }}" value="{{ $item['quantity'] }}" min="1" 
-                                           class="w-12 text-center border-none focus:ring-0 p-1 appearance-none" onchange="this.form.submit()">
-                                    <button type="button" onclick="incrementQuantity({{ $id }})" class="px-3 py-1 text-gray-600 hover:bg-gray-100">+</button>
+                                           class="w-12 text-center border-none focus:ring-0 p-1 appearance-none dark:bg-gray-800 dark:text-white" onchange="this.form.submit()">
+                                    <button type="button" onclick="incrementQuantity({{ $id }})" class="px-3 py-1 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">+</button>
                                 </div>
                             </form>
 
@@ -78,27 +78,27 @@
 
             <!-- Right Column: Summary -->
             <div class="lg:w-1/3">
-                <div class="bg-[#f9f9f9] p-6 rounded-lg shadow-sm border border-gray-200">
+                <div class="bg-[#f9f9f9] dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
                     <div class="mb-4">
-                        <label class="block text-sm font-bold text-gray-700 mb-2">GIFT CARD:</label>
-                        <input type="text" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-[#4a5b46]">
+                        <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">GIFT CARD:</label>
+                        <input type="text" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:border-[#4a5b46] dark:bg-gray-700 dark:text-white">
                     </div>
                     
                     <div class="mb-4">
-                        <label class="block text-sm font-bold text-gray-700 mb-2">DISCOUNT CODE:</label>
-                        <input type="text" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-[#4a5b46]">
+                        <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">DISCOUNT CODE:</label>
+                        <input type="text" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:border-[#4a5b46] dark:bg-gray-700 dark:text-white">
                     </div>
 
                     <div class="mb-4 flex items-center justify-between">
-                        <label class="block text-sm font-bold text-gray-700">TOTAL:</label>
-                        <div class="w-1/2 p-2 bg-white border border-gray-300 rounded text-right font-bold">
+                        <label class="block text-sm font-bold text-gray-700 dark:text-gray-300">TOTAL:</label>
+                        <div class="w-1/2 p-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-right font-bold dark:text-white">
                             £{{ number_format($subtotal, 2) }}
                         </div>
                     </div>
 
                     <div class="mb-6 flex items-center justify-between">
-                        <label class="block text-sm font-bold text-gray-700">ESTIMATED CARBON IMPACT:</label>
-                        <div class="w-1/3 p-2 bg-white border border-gray-300 rounded text-right text-green-600 font-semibold">
+                        <label class="block text-sm font-bold text-gray-700 dark:text-gray-300">ESTIMATED CARBON IMPACT:</label>
+                        <div class="w-1/3 p-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-right text-green-600 dark:text-green-400 font-semibold">
                             {{ $totalCarbonImpact }}kg
                         </div>
                     </div>

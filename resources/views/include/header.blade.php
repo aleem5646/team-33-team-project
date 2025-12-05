@@ -4,7 +4,7 @@
 </head>
 
 <!-- Navigation Bar -->
-<nav class="border-b bg-[#989d7f] border-[#7a7f63] relative z-50">
+<nav class="border-b bg-[#989d7f] border-[#7a7f63] dark:bg-[#556b2f] dark:border-[#3d4c20] relative z-50">
     <div class="w-[90%] max-w-[1200px] mx-auto py-5">
         <div class="flex justify-between items-center h-16">
 
@@ -21,19 +21,19 @@
             <div class="hidden sm:block">
                 <div class="flex space-x-4">
                     <a href="{{ route('home') }}" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
+                       class="text-black hover:text-gray-800 dark:text-white dark:hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium">
                         HOME
                     </a>
                     <a href="{{ route('products.index') }}" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
+                       class="text-black hover:text-gray-800 dark:text-white dark:hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium">
                         PRODUCTS
                     </a>
                     <a href="{{ route('contact') }}" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
+                       class="text-black hover:text-gray-800 dark:text-white dark:hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium">
                         CONTACT
                     </a>
                     <a href="{{ route('about') }}" 
-                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium">
+                       class="text-black hover:text-gray-800 dark:text-white dark:hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium">
                         ABOUT
                     </a>
                 </div>
@@ -45,7 +45,7 @@
                 @auth
                 <!-- Basket -->
                 <a href="{{ route('basket.index') }}" 
-                   class="flex items-center text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
+                   class="flex items-center text-black hover:text-gray-800 dark:text-white dark:hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" 
                          class="h-5 w-5 mr-1" 
                          fill="none" 
@@ -79,7 +79,7 @@
                                 My Profile
                             </a>
                             <a href="#" 
-                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
+                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200 dark-mode-toggle">
                                 Dark Mode
                             </a>
                             <a href="{{ route('logout') }}" 
@@ -91,11 +91,11 @@
                 @else
                     <!-- Guest Links -->
                     <div class="flex space-x-2 items-center">
-                        <button class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium border border-black">
+                        <button class="text-black hover:text-gray-800 dark:text-white dark:hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium border border-black dark:border-white dark-mode-toggle">
                             Dark Mode
                         </button>
                         <a href="{{ route('login') }}" 
-                           class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium border border-black">
+                           class="text-black hover:text-gray-800 dark:text-white dark:hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium border border-black dark:border-white">
                             LOGIN
                         </a>
                         <a href="{{ route('registration') }}" 

@@ -4,20 +4,11 @@
 
 @section('content')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Page</title>
-</head>
-<body class="bg-white text-gray-800 antialiased">
-
     <main class="container mx-auto px-4 py-10">
         <div class="flex flex-col md:flex-row gap-8 justify-center items-start">
             
             <!-- Introduction Block (Left Side) -->
-            <div class="md:w-1/2 bg-[#92b09a] text-white p-10 rounded-lg shadow-lg flex flex-col justify-center">
+            <div class="md:w-1/2 bg-[#92b09a] dark:bg-[#556b2f] text-white p-10 rounded-lg shadow-lg flex flex-col justify-center">
                 <h2 class="text-2xl font-bold mb-4">Hello There!</h2>
                 <p class="mb-3 text-base">
                     We are thrilled to connect with you. Whether you have a question about our products, need support, or just want to provide feedback on our service, we're here to help you shine with Solara!
@@ -31,7 +22,7 @@
             </div>
 
             <!-- Contact Form Block (Right Side) -->
-            <div class="md:w-1/2 bg-gray-50 p-10 rounded-lg shadow-lg">
+            <div class="md:w-1/2 bg-gray-50 dark:bg-gray-800 p-10 rounded-lg shadow-lg">
                 @if(session('success'))
                     <div class="bg-green-100 text-green-800 p-3 mb-4 border border-green-200 rounded">
                         {{ session('success') }}
@@ -52,30 +43,30 @@
                     @csrf
                     <div class="flex flex-col md:flex-row gap-4 mb-4">
                         <div class="w-full md:w-1/2">
-                            <label for="first_name" class="block mb-2 font-semibold">First Name*</label>
+                            <label for="first_name" class="block mb-2 font-semibold dark:text-gray-300">First Name*</label>
                             <input type="text" id="first_name" name="first_name" placeholder="First Name" value="{{ old('first_name') }}" required 
-                                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                                   class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
                         </div>
                         <div class="w-full md:w-1/2">
-                            <label for="last_name" class="block mb-2 font-semibold">Last Name*</label>
+                            <label for="last_name" class="block mb-2 font-semibold dark:text-gray-300">Last Name*</label>
                             <input type="text" id="last_name" name="last_name" placeholder="Last Name" value="{{ old('last_name') }}" required 
-                                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                                   class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label for="email" class="block mb-2 font-semibold">Email*</label>
+                        <label for="email" class="block mb-2 font-semibold dark:text-gray-300">Email*</label>
                         <input type="email" id="email" name="email" placeholder="name@example.com" value="{{ old('email') }}" required
-                               class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                               class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
                     </div>
                     <div class="mb-4">
-                        <label for="subject" class="block mb-2 font-semibold">Subject*</label>
+                        <label for="subject" class="block mb-2 font-semibold dark:text-gray-300">Subject*</label>
                         <input type="text" id="subject" name="subject" value="{{ old('subject') }}" required
-                               class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                               class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
                     </div>
                     <div class="mb-6">
-                        <label for="message" class="block mb-2 font-semibold">Message*</label>
+                        <label for="message" class="block mb-2 font-semibold dark:text-gray-300">Message*</label>
                         <textarea id="message" name="message" required rows="5"
-                                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 resize-y">{{ old('message') }}</textarea>
+                                  class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 resize-y dark:bg-gray-700 dark:text-white">{{ old('message') }}</textarea>
                     </div>
                     <div>
                         <button type="submit" 
@@ -87,8 +78,5 @@
             </div>
         </div>
     </main>
-    
-</body>
-</html>
 
 @endsection
