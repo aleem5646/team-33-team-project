@@ -64,6 +64,21 @@
                     <!-- Authenticated User Dropdown -->
                     <div class="relative">
                         <button id="authProfileMenuButton" 
+
+                @auth
+                    <!-- Authenticated User -->
+                    <a href="#" 
+                       class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium">
+                        USER PROFILE
+                    </a>
+                    <a href="{{ route('logout') }}" 
+                       class="text-red-600 hover:text-red-800 px-3 py-2 rounded-md text-sm font-medium">
+                        LOGOUT
+                    </a>
+                @else
+                    <!-- Profile Dropdown -->
+                    <div class="relative">
+                        <button id="profileMenuButton" 
                                 class="flex items-center bg-white p-2 rounded-full text-black hover:text-gray-800 focus:outline-none">
                             <svg xmlns="http://www.w3.org/2000/svg" 
                                  class="h-6 w-6" 
@@ -104,6 +119,18 @@
                             REGISTER
                         </a>
                     </div>
+                        <div id="profileDropdown" 
+                             class="hidden absolute right-0 mt-2 w-44 bg-white border rounded-md shadow-lg">
+                            <a href="{{ route('login') }}" 
+                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap">
+                                Login
+                            </a>
+                            <a href="{{ route('registration') }}" 
+                               class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap">
+                                Sign Up
+                            </a>
+                        </div>
+                    </div>
                 @endauth
             </div>
 
@@ -135,5 +162,13 @@
 </script>
 
 
+
+</nav>
+    const btn = document.getElementById('profileMenuButton');
+    const dd = document.getElementById('profileDropdown');
+    if (btn && dd) {
+        btn.addEventListener('click', () => dd.classList.toggle('hidden'));
+    }
+</script>
 
 </nav>
