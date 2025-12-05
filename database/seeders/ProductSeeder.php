@@ -464,6 +464,7 @@ class ProductSeeder extends Seeder
                     'description' => $data['description'],
                     'price' => $data['price'],
                     'image_url' => 'imgs/' . $data['image'], // Add prefix for DB storage
+                    'carbon_impact' => $data['carbon_impact'] ?? null,
                 ]
             );
 

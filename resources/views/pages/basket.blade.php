@@ -99,7 +99,7 @@
                     <div class="mb-6 flex items-center justify-between">
                         <label class="block text-sm font-bold text-gray-700">ESTIMATED CARBON IMPACT:</label>
                         <div class="w-1/3 p-2 bg-white border border-gray-300 rounded text-right text-green-600 font-semibold">
-                            -2.5kg
+                            {{ $totalCarbonImpact }}kg
                         </div>
                     </div>
 

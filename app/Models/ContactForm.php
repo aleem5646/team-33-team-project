@@ -9,7 +9,7 @@ class ContactForm extends Model
 {
     use HasFactory;
 
-    protected $table = 'contact_form';
+    protected $table = 'contact_forms';
     protected $primaryKey = 'formId';
     public $timestamps = false;
 

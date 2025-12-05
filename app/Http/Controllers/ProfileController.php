@@ -11,8 +11,18 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         
-        $orders = $user->orders()->orderBy('created_at', 'desc')->get(); 
-        $sustainabilityScore = $orders->count() * 2.5;
+        $orders = $user->orders()->with('items.productVariant.product')->orderBy('created_at', 'desc')->get(); 
+        
+        $sustainabilityScore = 0;
+        foreach ($orders as $order) {
+            foreach ($order->items as $item) {
+                // Access product via productVariant
+                if ($item->productVariant && $item->productVariant->product && $item->productVariant->product->carbon_impact) {
+                    $impactVal = (float) $item->productVariant->product->carbon_impact;
+                    $sustainabilityScore += $impactVal * $item->quantity;
+                }
+            }
+        }
 
         return view('pages.profile', compact('user', 'orders', 'sustainabilityScore'));
     }

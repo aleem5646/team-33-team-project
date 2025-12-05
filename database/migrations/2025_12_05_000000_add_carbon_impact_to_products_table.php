@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('returns', function (Blueprint $table) {
-            $table->text('image_path')->nullable()->after('reason');
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('carbon_impact')->nullable()->after('price');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('returns', function (Blueprint $table) {
-            //
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('carbon_impact');
         });
     }
 };

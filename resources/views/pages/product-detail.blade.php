@@ -50,6 +50,21 @@
                 <div class="mb-5">
                     <h3 class="font-bold mb-1">Information</h3>
                     <p>{{ $product->information }}</p>
+                    
+                    @if($product->filters->count() > 0)
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            @foreach($product->filters as $filter)
+                                @php
+                                    $bgClass = 'bg-gray-200 text-gray-800';
+                                    if(strtolower($filter->name) == 'low carbon') $bgClass = 'bg-green-100 text-green-800 border border-green-200';
+                                    if(strtolower($filter->name) == 'fair trade') $bgClass = 'bg-blue-100 text-blue-800 border border-blue-200';
+                                @endphp
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $bgClass }}">
+                                    {{ $filter->name }}
+                                </span>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Product Description -->
@@ -74,6 +89,43 @@
                                min="1"
                                class="w-[60px] p-2 mt-1 border border-[#ccc] rounded-md">
                     </div>
+
+                    <!-- Carbon Impact -->
+                    @if($product->carbon_impact)
+                        <div class="mb-5">
+                            <h3 class="font-bold mb-1">Estimated Carbon Impact</h3>
+                            <p class="text-green-700 font-semibold">
+                                <span id="carbon-display">{{ $product->carbon_impact }}</span> kg CO2e
+                            </p>
+                            <p class="text-xs text-gray-500 mt-1">
+                                Total Impact: <span id="total-carbon-display">{{ $product->carbon_impact }}</span> kg CO2e
+                            </p>
+                        </div>
+                    @endif
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const quantityInput = document.getElementById('quantity');
+                            const carbonDisplay = document.getElementById('carbon-display');
+                            const totalCarbonDisplay = document.getElementById('total-carbon-display');
+                            
+                            // Extract numeric value from string (e.g., "2 ± 0.5" -> 2)
+                            const baseImpactStr = "{{ $product->carbon_impact }}";
+                            const baseImpact = parseFloat(baseImpactStr) || 0;
+
+                            function updateCarbon() {
+                                const qty = parseInt(quantityInput.value) || 1;
+                                const total = (baseImpact * qty).toFixed(2);
+                                
+                                // If the string has a ± part, we might want to keep it or just show the calculated base
+                                // For simplicity, we show the calculated total based on the base number
+                                totalCarbonDisplay.textContent = total + (baseImpactStr.includes('±') ? ' ± ' + (parseFloat(baseImpactStr.split('±')[1]) * qty).toFixed(2) : '');
+                            }
+
+                            quantityInput.addEventListener('input', updateCarbon);
+                            quantityInput.addEventListener('change', updateCarbon);
+                        });
+                    </script>
 
                     <button type="submit"
                             class="mt-5 text-white py-2 px-4 rounded-md"

@@ -51,7 +51,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::with(['category', 'reviews'])->where('productId', $id)->firstOrFail();
+        $product = Product::with(['category', 'reviews', 'filters'])->where('productId', $id)->firstOrFail();
         return view('pages.product-detail', compact('product'));
     }
 
