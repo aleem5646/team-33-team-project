@@ -51,28 +51,22 @@
                     <p>{{ $product->description }}</p>
                 </div>
 
-                <!-- Quantity -->
-                <div class="mb-5">
-                    <label for="quantity" class="block mt-3 font-bold">Quantity:</label>
-                    <input type="number"
-                           id="quantity"
-                           name="quantity"
-                           value="1"
-                           min="1"
-                           class="w-[60px] p-2 mt-1 border border-[#ccc] rounded-md">
-                </div>
-
-                <!-- Estimated Carbon Impact -->
-                <div class="mb-5">
-                    <label class="block mt-3 font-bold">Estimated Carbon Impact:</label>
-                    <p>{{ $product->carbon_impact }}</p>
-                </div>
-
-                <!-- Add to Cart Button -->
+                <!-- Add to Cart Form -->
                 <form id="cartForm" method="POST" action="{{ route('cart.add') }}">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <input type="hidden" id="selected_variant" name="selected_variant" value="default">
+
+                    <!-- Quantity -->
+                    <div class="mb-5">
+                        <label for="quantity" class="block mt-3 font-bold">Quantity:</label>
+                        <input type="number"
+                               id="quantity"
+                               name="quantity"
+                               value="1"
+                               min="1"
+                               class="w-[60px] p-2 mt-1 border border-[#ccc] rounded-md">
+                    </div>
 
                     <button type="submit"
                             class="mt-5 text-white py-2 px-4 rounded-md"

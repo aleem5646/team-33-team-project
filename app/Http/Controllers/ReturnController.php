@@ -8,7 +8,7 @@ class ReturnController extends Controller
 {
     public function showForm()
     {
-        return view('return');
+        return view('pages.return');
     }
 
     public function submitForm(Request $request)

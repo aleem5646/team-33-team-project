@@ -393,6 +393,31 @@ class ProductController extends Controller
 
     public function addToCart(Request $request)
     {
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity', 1);
+
+        if (!isset($this->products[$productId])) {
+            return back()->with('error', 'Product not found!');
+        }
+
+        $product = $this->products[$productId];
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$productId])) {
+            $cart[$productId]['quantity'] += $quantity;
+        } else {
+            $cart[$productId] = [
+                'id' => $product['id'],
+                'name' => $product['name'],
+                'price' => $product['price'],
+                'image' => $product['image'], // Raw image name, view handles path
+                'quantity' => $quantity,
+                'variant' => 'default' // Placeholder
+            ];
+        }
+
+        session()->put('cart', $cart);
+
         return back()->with('status', 'Added to cart!');
     }
 }

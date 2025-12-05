@@ -119,6 +119,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
 Route::post('/checkout', [CheckoutController::class, 'confirmOrder'])->name('order.confirm');
+Route::get('/order-confirmation', [CheckoutController::class, 'confirmation'])->name('order.confirmation');
 
 
 

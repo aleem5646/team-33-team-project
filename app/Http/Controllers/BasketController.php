@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Basket;
-use App\Models\BasketItem;
-use App\Models\ProductVariant;
 use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
@@ -15,60 +12,29 @@ class BasketController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        
-        if (!$user) {
-            return redirect()->route('login')->with('error', 'Please login to view your basket.');
-        }
-
-        $basket = Basket::where('userId', $user->userId)->with(['items.productVariant.product'])->first();
-
-        // Calculate totals
+        $cart = session()->get('cart', []);
         $subtotal = 0;
-        if ($basket) {
-            foreach ($basket->items as $item) {
-                $subtotal += $item->productVariant->price * $item->quantity;
-            }
+
+        foreach ($cart as $item) {
+            $subtotal += $item['price'] * $item['quantity'];
         }
 
-        return view('pages.basket', compact('basket', 'subtotal'));
+        // Convert array to object for view compatibility if needed, or just pass array
+        // The view currently expects $basket->items collection. 
+        // We will adapt the view to handle the array directly.
+        
+        return view('pages.basket', compact('cart', 'subtotal'));
     }
 
     /**
      * Add an item to the basket.
+     * Note: This is now largely handled by ProductController@addToCart for the product page form.
+     * But we keep this if needed for other add actions.
      */
     public function add(Request $request)
     {
-        $request->validate([
-            'product_variant_id' => 'required|exists:product_variants,product_variantId',
-            'quantity' => 'required|integer|min:1',
-        ]);
-
-        $user = Auth::user();
-        if (!$user) {
-            return redirect()->route('login')->with('error', 'Please login to add items to your basket.');
-        }
-
-        // Get or create basket for user
-        $basket = Basket::firstOrCreate(['userId' => $user->userId]);
-
-        // Check if item already exists in basket
-        $basketItem = BasketItem::where('basketId', $basket->basketId)
-                                ->where('product_variantId', $request->product_variant_id)
-                                ->first();
-
-        if ($basketItem) {
-            $basketItem->quantity += $request->quantity;
-            $basketItem->save();
-        } else {
-            BasketItem::create([
-                'basketId' => $basket->basketId,
-                'product_variantId' => $request->product_variant_id,
-                'quantity' => $request->quantity,
-            ]);
-        }
-
-        return redirect()->route('basket.index')->with('success', 'Item added to basket!');
+        // ... (Logic similar to ProductController if needed, but for now we rely on ProductController)
+        return redirect()->route('basket.index');
     }
 
     /**
@@ -76,17 +42,11 @@ class BasketController extends Controller
      */
     public function remove($itemId)
     {
-        $user = Auth::user();
-        if (!$user) {
-            return redirect()->route('login');
-        }
+        $cart = session()->get('cart', []);
 
-        $basket = Basket::where('userId', $user->userId)->first();
-        
-        if ($basket) {
-            BasketItem::where('basketId', $basket->basketId)
-                      ->where('basket_itemId', $itemId)
-                      ->delete();
+        if (isset($cart[$itemId])) {
+            unset($cart[$itemId]);
+            session()->put('cart', $cart);
         }
 
         return redirect()->route('basket.index')->with('success', 'Item removed from basket.');
@@ -101,22 +61,11 @@ class BasketController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $user = Auth::user();
-        if (!$user) {
-            return redirect()->route('login');
-        }
+        $cart = session()->get('cart', []);
 
-        $basket = Basket::where('userId', $user->userId)->first();
-
-        if ($basket) {
-            $basketItem = BasketItem::where('basketId', $basket->basketId)
-                                    ->where('basket_itemId', $itemId)
-                                    ->first();
-            
-            if ($basketItem) {
-                $basketItem->quantity = $request->quantity;
-                $basketItem->save();
-            }
+        if (isset($cart[$itemId])) {
+            $cart[$itemId]['quantity'] = $request->input('quantity');
+            session()->put('cart', $cart);
         }
 
         return redirect()->route('basket.index')->with('success', 'Basket updated.');

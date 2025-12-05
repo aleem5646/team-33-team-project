@@ -63,7 +63,7 @@
                 @csrf
 
                 <label for="email">Email*</label>
-                <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                <input type="email" id="email" name="email" value="{{ Auth::user()->email ?? '' }}" readonly class="bg-gray-100 cursor-not-allowed" required>
 
                 <label>Shipping Address</label>
                 <div class="row">
@@ -87,37 +87,35 @@
                     </div>
                 </div>
 
-                <input type="tel" name="phone" placeholder="Phone number (optional)">
+                <input type="tel" name="phone" placeholder="Phone number (optional)" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
                 <div class="checkbox">
                     <input type="checkbox" id="terms" name="terms" required>
                     <label for="terms">I confirm I have read all the terms.</label>
                 </div>
 
-                <button type="submit" class="confirm-btn">Confirm Order</button>
+                <button type="submit" class="confirm-btn" @if($total <= 0) disabled style="background-color: #ccc; cursor: not-allowed;" @endif>Confirm Order</button>
             </form>
         </div>
 
         <!-- Right side: Order Summary -->
         <div class="checkout-right summary-box">
             <h3>Summary of the Order</h3>
-            <div class="summary-item">
-                <span>Item Name</span>
-                <span>£0.00</span>
-            </div>
-            <div class="summary-item">
-                <span>Quantity</span>
-                <span>0</span>
-            </div>
+            @foreach($cart as $item)
+                <div class="summary-item">
+                    <span>{{ $item['name'] }} (x{{ $item['quantity'] }})</span>
+                    <span>£{{ number_format($item['price'] * $item['quantity'], 2) }}</span>
+                </div>
+            @endforeach
+            
             <div class="summary-item">
                 <span>Shipping</span>
                 <span>£0.00</span>
             </div>
             <div class="summary-total">
                 <span>Total</span>
-                <span>£0.00</span>
+                <span>£{{ number_format($total, 2) }}</span>
             </div>
-            <!-- Placeholders only, backend will inject real data later -->
         </div>
     </div>
 </div>

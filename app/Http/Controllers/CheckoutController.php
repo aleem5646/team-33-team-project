@@ -8,7 +8,13 @@ class CheckoutController extends Controller
 {
     public function showForm()
     {
-        return view('checkout');
+        $cart = session()->get('cart', []);
+        $total = 0;
+        foreach ($cart as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+
+        return view('checkout', compact('cart', 'total'));
     }
 
     public function confirmOrder(Request $request)
@@ -23,6 +29,14 @@ class CheckoutController extends Controller
             'terms' => 'accepted',
         ]);
 
-        return back()->with('status', 'Order confirmed!');
+        // Clear the cart session
+        session()->forget('cart');
+
+        return redirect()->route('order.confirmation');
+    }
+
+    public function confirmation()
+    {
+        return view('pages.order-confirmation');
     }
 }
