@@ -42,7 +42,7 @@
                     <div class="flex flex-col sm:flex-row items-center gap-6 border-b border-gray-200 py-6">
                         <!-- Product Image -->
                         <div class="w-32 h-32 flex-shrink-0">
-                            <img src="{{ asset('imgs/' . $item['image']) }}" 
+                            <img src="{{ asset($item['image']) }}" 
                                  alt="{{ $item['name'] }}" 
                                  class="w-full h-full object-cover rounded-md">
                         </div>

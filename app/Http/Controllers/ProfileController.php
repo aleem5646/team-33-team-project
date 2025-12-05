@@ -12,7 +12,33 @@ class ProfileController extends Controller
         $user = Auth::user();
         
         $orders = $user->orders()->orderBy('created_at', 'desc')->get(); 
+        $sustainabilityScore = $orders->count() * 2.5;
 
-        return view('pages.profile', compact('user', 'orders'));
+        return view('pages.profile', compact('user', 'orders', 'sustainabilityScore'));
+    }
+    public function edit()
+    {
+        $user = Auth::user();
+        return view('pages.edit-profile', compact('user'));
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->userId . ',userId',
+            'phone' => 'nullable|string|max:20',
+            'address_line' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
+            'postcode' => 'nullable|string|max:20',
+            'country' => 'nullable|string|max:255',
+        ]);
+
+        $user->update($request->all());
+
+        return redirect()->route('profile')->with('success', 'Profile updated successfully!');
     }
 }

@@ -42,7 +42,7 @@
                         <div class="bg-[#8f9877] p-3 rounded border border-black/10">
                             <p class="font-bold">Order #{{ $order->orderId }}</p>
                             <p class="text-sm">Date: {{ $order->created_at->format('d M Y') }}</p>
-                            <p class="text-sm">Total: £{{ number_format($order->total_amount, 2) }}</p>
+                            <p class="text-sm">Total: £{{ number_format($order->total_price, 2) }}</p>
                             <p class="text-sm">Status: {{ ucfirst($order->status) }}</p>
                         </div>
                     @endforeach
@@ -52,12 +52,13 @@
 
 
         <div class="lg:w-1/4 flex flex-col gap-4">
-            <a href="#" class="bg-[#3e4c24] text-white font-bold py-4 px-6 rounded text-center hover:bg-[#2e3a1b] transition uppercase shadow-md">
+            <a href="{{ route('profile.edit') }}" class="bg-[#3e4c24] text-white font-bold py-4 px-6 rounded text-center hover:bg-[#2e3a1b] transition uppercase shadow-md">
                 Edit Profile
             </a>
             
-            <a href="#" class="bg-[#3e4c24] text-white font-bold py-8 px-6 rounded text-center hover:bg-[#2e3a1b] transition uppercase shadow-md flex items-center justify-center h-[150px]">
-                How Much You Have Helped/ Sustainability Impact
+            <a href="#" class="bg-[#3e4c24] text-white font-bold py-8 px-6 rounded text-center hover:bg-[#2e3a1b] transition uppercase shadow-md flex flex-col items-center justify-center h-[150px] gap-2">
+                <span>How Much You Have Helped/ Sustainability Impact</span>
+                <span class="text-2xl text-[#d4edda]">{{ $sustainabilityScore }}kg CO2 Saved</span>
             </a>
             
             <a href="{{ route('logout') }}" class="bg-[#3e4c24] text-white font-bold py-4 px-6 rounded text-center hover:bg-[#2e3a1b] transition uppercase shadow-md mt-auto">

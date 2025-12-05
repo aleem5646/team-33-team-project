@@ -120,21 +120,5 @@
     </div>
 </div>
 
-<!-- Thank You Popup -->
-<div id="thankYouPopup" class="popup">
-    🎉 Thank you! Your order has been confirmed.
-</div>
 
-<script>
-    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const popup = document.getElementById('thankYouPopup');
-        popup.style.display = 'block';
-
-        setTimeout(() => { popup.style.display = 'none'; }, 3000);
-
-        this.submit();
-    });
-</script>
 @endsection

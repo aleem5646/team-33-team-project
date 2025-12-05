@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('orderId'); // Primary Key
             $table->foreignId('userId')->nullable()->constrained('users', 'userId')->onDelete('set null');
             $table->string('shipping_address');
+            $table->string('transactionId')->nullable();
             $table->enum('status', ['pending', 'approved', 'delivered', 'cancelled'])->default('pending');
             $table->decimal('total_price', 8, 2);
             $table->timestamps();

@@ -119,8 +119,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
 Route::post('/checkout', [CheckoutController::class, 'confirmOrder'])->name('order.confirm');
+    Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 Route::get('/order-confirmation', [CheckoutController::class, 'confirmation'])->name('order.confirmation');
-
-
-
 
