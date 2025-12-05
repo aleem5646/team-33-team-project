@@ -3,12 +3,12 @@
 
 @section('content')
 <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="w-full max-w-md p-8 space-y-6 bg-white shadow-md rounded-lg">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
 
-        <h2 class="text-3xl font-bold text-center text-gray-900">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white">
             Set New Password
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
+        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
             Enter your new password below.
         </p>
 
@@ -28,19 +28,19 @@
             <input type="hidden" name="token" value="{{ $token }}">
             
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
                 <div class="mt-1">
-                    <input id="email" name="email" type="email" value="{{ $request->email ?? old('email') }}" required readonly
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100
+                     <input id="email" name="email" type="email" value="{{ $request->email ?? old('email') }}" required readonly
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-gray-100 dark:bg-gray-700 dark:text-white
                                   focus:outline-none focus:ring-green-500 focus:border-green-500">
                 </div>
             </div>
 
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">New Password</label>
+                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">New Password</label>
                 <div class="mt-1 relative">
                     <input id="password" name="password" type="password" autocomplete="new-password" required
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:bg-gray-700 dark:text-white
                                   focus:outline-none focus:ring-green-500 focus:border-green-500
                                   ring-2 ring-green-500 border-transparent">
                     <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500" data-toggle-password-for="password">
@@ -58,10 +58,10 @@
             </div>
             
             <div>
-                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <label for="password_confirmation" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm Password</label>
                 <div class="mt-1 relative">
                     <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password" required
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:bg-gray-700 dark:text-white
                                   focus:outline-none focus:ring-green-500 focus:border-green-500">
                     <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500" data-toggle-password-for="password_confirmation">
                         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

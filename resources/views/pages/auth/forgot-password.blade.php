@@ -3,12 +3,12 @@
 
 @section('content')
 <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="w-full max-w-md p-8 space-y-6 bg-white shadow-md rounded-lg">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
 
-        <h2 class="text-3xl font-bold text-center text-gray-900">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white">
             Password Reset
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
+        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
             Provide the email address associated with your account to recover your password.
         </p>
 
@@ -31,10 +31,10 @@
             @csrf
             
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email*</label>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email*</label>
                 <div class="mt-1">
                     <input id="email" name="email" type="email" autocomplete="email" required
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:bg-gray-700 dark:text-white
                                   focus:outline-none focus:ring-green-500 focus:border-green-500
                                   ring-2 ring-green-500 border-transparent">
                 </div>
@@ -50,7 +50,7 @@
             </div>
         </form>
 
-        <div class="text-sm text-center text-gray-600 space-x-4">
+        <div class="text-sm text-center text-gray-600 dark:text-gray-400 space-x-4">
             <a href="{{ route('login') }}" class="font-medium text-green-600 hover:text-green-500">
                 Login
             </a>
