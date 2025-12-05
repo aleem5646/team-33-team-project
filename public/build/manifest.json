@@ -1,0 +1,57 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-ousWGmlE.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/fonts/geist-mono/GeistMono-Medium.woff2": {
+    "file": "assets/GeistMono-Medium-BN_KwKn5.woff2",
+    "src": "resources/fonts/geist-mono/GeistMono-Medium.woff2"
+  },
+  "resources/fonts/geist-mono/GeistMono-Regular.woff2": {
+    "file": "assets/GeistMono-Regular-DypyIx_w.woff2",
+    "src": "resources/fonts/geist-mono/GeistMono-Regular.woff2"
+  },
+  "resources/fonts/instrument-sans/InstrumentSans-ItalicVariable.woff2": {
+    "file": "assets/InstrumentSans-ItalicVariable-pMV_u3Uy.woff2",
+    "src": "resources/fonts/instrument-sans/InstrumentSans-ItalicVariable.woff2"
+  },
+  "resources/fonts/instrument-sans/InstrumentSans-Variable.woff2": {
+    "file": "assets/InstrumentSans-Variable-tWV223Ma.woff2",
+    "src": "resources/fonts/instrument-sans/InstrumentSans-Variable.woff2"
+  },
+  "resources/fonts/open-sans/open-sans-bold-italic.woff2": {
+    "file": "assets/open-sans-bold-italic-BB5Hhhk8.woff2",
+    "src": "resources/fonts/open-sans/open-sans-bold-italic.woff2"
+  },
+  "resources/fonts/open-sans/open-sans-bold.woff2": {
+    "file": "assets/open-sans-bold-CceUhp2e.woff2",
+    "src": "resources/fonts/open-sans/open-sans-bold.woff2"
+  },
+  "resources/fonts/open-sans/open-sans-italic.woff2": {
+    "file": "assets/open-sans-italic-oaOkCnEp.woff2",
+    "src": "resources/fonts/open-sans/open-sans-italic.woff2"
+  },
+  "resources/fonts/open-sans/open-sans-regular.woff2": {
+    "file": "assets/open-sans-regular-Bk63H6sG.woff2",
+    "src": "resources/fonts/open-sans/open-sans-regular.woff2"
+  },
+  "resources/fonts/poppins/Poppins-Medium.woff2": {
+    "file": "assets/Poppins-Medium-C8OXljZJ.woff2",
+    "src": "resources/fonts/poppins/Poppins-Medium.woff2"
+  },
+  "resources/fonts/satoshi/Satoshi-Bold.woff2": {
+    "file": "assets/Satoshi-Bold-Bd5kKQ_U.woff2",
+    "src": "resources/fonts/satoshi/Satoshi-Bold.woff2"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-C-tmfbBF.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
