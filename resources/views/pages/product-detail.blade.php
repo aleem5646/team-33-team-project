@@ -6,9 +6,16 @@
 <div class="max-w-[900px] mx-auto p-5">
 
     <!-- Notification -->
-    <div id="cartMessage" class="hidden bg-[#d4edda] text-[#155724] p-3 rounded-md mb-4">
-        ✅ Item added to cart!
-    </div>
+    @if(session('status'))
+        <div class="bg-[#d4edda] text-[#155724] p-3 rounded-md mb-4">
+            ✅ {{ session('status') }}
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="bg-red-100 text-red-700 p-3 rounded-md mb-4">
+            ❌ {{ session('error') }}
+        </div>
+    @endif
 
     <div class="bg-white border border-[#ccc] rounded-lg shadow-md p-5">
 
@@ -16,7 +23,7 @@
 
             <!-- Left: Product Image -->
             <div class="flex-1 bg-[#dee1d4] rounded-lg p-5 flex items-center justify-center">
-                <img src="{{ asset('imgs/' . $product->image) }}"
+                <img src="{{ asset($product->image_url) }}"
                      alt="{{ $product->name }}"
                      class="rounded-md object-contain w-[300px] h-auto">
             </div>
@@ -33,10 +40,10 @@
                 <!-- Product Rating -->
                 <p class="text-[#d4af37] mb-4">
                     @php
-                        $averageRating = count($product->reviews) ? round(array_sum(array_column($product->reviews, 'rating')) / count($product->reviews)) : 0;
+                        $averageRating = $product->reviews->count() ? round($product->reviews->avg('rating')) : 0;
                     @endphp
                     {{ str_repeat('★', $averageRating) . str_repeat('☆', 5 - $averageRating) }}
-                    ({{ count($product->reviews) }} reviews)
+                    ({{ $product->reviews->count() }} reviews)
                 </p>
 
                 <!-- Product Information -->
@@ -54,7 +61,7 @@
                 <!-- Add to Cart Form -->
                 <form id="cartForm" method="POST" action="{{ route('cart.add') }}">
                     @csrf
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="product_id" value="{{ $product->productId }}">
                     <input type="hidden" id="selected_variant" name="selected_variant" value="default">
 
                     <!-- Quantity -->
@@ -83,8 +90,8 @@
             <h3 class="font-bold text-lg mb-3">Reviews</h3>
             @foreach($product->reviews as $review)
                 <p>
-                    <span class="text-[#d4af37]">{{ str_repeat('★', $review['rating']) . str_repeat('☆', 5 - $review['rating']) }}</span>
-                    - <span class="text-black">{{ $review['comment'] }}</span>
+                    <span class="text-[#d4af37]">{{ str_repeat('★', $review->rating) . str_repeat('☆', 5 - $review->rating) }}</span>
+                    - <span class="text-black">{{ $review->review }}</span>
                 </p>
             @endforeach
         </div>
@@ -93,15 +100,6 @@
 
 </div>
 
-<!-- Add to Cart Script -->
-<script>
-document.getElementById('cartForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const msg = document.getElementById('cartMessage');
-    msg.classList.remove('hidden');
-    setTimeout(() => { msg.classList.add('hidden'); }, 3000);
-    this.submit();
-});
-</script>
+
 
 @endsection

@@ -4,7 +4,8 @@
 <section class="w-full px-4 py-8 space-y-6">
 
     <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-        <div class="space-y-3">
+        <!-- Left Column: Categories -->
+        <div class="w-full md:flex-1">
             <div class="flex flex-wrap items-center gap-3">
                 <a href="{{ request()->fullUrlWithQuery(['category' => 1]) }}"
                    class="px-4 py-2 text-sm font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition uppercase"> Fashion
@@ -18,6 +19,9 @@
                 <a href="{{ request()->fullUrlWithQuery(['category' => 4]) }}"
                    class="px-4 py-2 text-sm font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition uppercase"> Foods
                 </a>
+                <a href="{{ request()->fullUrlWithQuery(['category' => 5]) }}"
+                   class="px-4 py-2 text-sm font-medium rounded bg-[#989d7f] text-black hover:bg-[#7a7f63] transition uppercase"> Office Supplies
+                </a>
 
                 @if(request()->filled('category'))
                     <a href="{{ route('products.index', request()->except('category','page')) }}"
@@ -27,32 +31,57 @@
                 @endif
             </div>
         </div>
-        <div class="w-full md:w-72 space-y-3">
+
+        <!-- Right Column: Search & Filters -->
+        <div class="flex flex-col md:flex-row gap-4 items-start">
+            <!-- Search Bar -->
             <form action="{{ route('products.index') }}" method="GET" class="flex gap-2">
                 <input
                     type="text"
                     name="search"
                     value="{{ request('search') }}"
                     placeholder="Search products..."
-                    class="w-full rounded border border-[#7a7f63] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7a7f63] focus:border-green-500"
+                    class="w-full md:w-64 rounded border border-[#7a7f63] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7a7f63] focus:border-green-500"
                 >
                 <button
                     type="submit"
                     class="rounded bg-[#989d7f] px-4 py-2 text-sm font-semibold text-black hover:bg-[#7a7f63]"
                 > Search
                 </button>
+                <!-- Preserve other params -->
+                @if(request('category')) <input type="hidden" name="category" value="{{ request('category') }}"> @endif
+                @if(request('sort')) <input type="hidden" name="sort" value="{{ request('sort') }}"> @endif
+                @if(request('filters'))
+                    @foreach(request('filters') as $filter)
+                        <input type="hidden" name="filters[]" value="{{ $filter }}">
+                    @endforeach
+                @endif
             </form>
 
-            <form action="{{ route('products.index') }}" method="GET" class="rounded border border-[#7a7f63] bg-white p-3 space-y-2">
+            <!-- Filters & Sort -->
+            <form action="{{ route('products.index') }}" method="GET" class="w-full md:w-72 rounded border border-[#7a7f63] bg-white p-3 space-y-3">
                 <input type="hidden" name="search" value="{{ request('search') }}">
                 <input type="hidden" name="category" value="{{ request('category') }}">
-                <div class="flex items-center justify-between">
-                    <p class="text-xs font-bold text-gray-700 uppercase tracking-wide"> Filter </p>
+
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+                    <p class="text-xs font-bold text-gray-700 uppercase tracking-wide"> Filter & Sort </p>
                     <button type="submit" class="text-xs font-semibold text-[#989d7f] hover:text-[#7a7f63]"> Apply
                     </button>
                 </div>
 
+                <!-- Sort By -->
+                <div>
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Sort By Price</label>
+                    <select name="sort" class="w-full rounded border-gray-300 text-sm focus:ring-[#989d7f] focus:border-[#989d7f]">
+                        <option value="">Default</option>
+                        <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Low to High</option>
+                        <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>High to Low</option>
+                    </select>
+                </div>
+
+                <!-- Filters -->
                 <div class="space-y-1">
+                    <p class="text-xs font-medium text-gray-700 mb-1">Attributes</p>
                     <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
                        <input type="checkbox" name="filters[]" value="1"
                                {{ in_array(1, (array) request('filters')) ? 'checked' : '' }}
@@ -74,7 +103,7 @@
                 <a href="{{ route('products.show', $product->productId ?? $product->id) }}" class="block">
                     <div class="bg-gray-100">
                         <img
-                            src="{{ asset('imgs/'.$product->image_url) }}"
+                            src="{{ asset($product->image_url) }}"
                             alt="{{ $product->name }}"
                             class="w-full h-56 object-cover"
                         >

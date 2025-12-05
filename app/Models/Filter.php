@@ -18,6 +18,6 @@ class Filter extends Model
     // Relationship
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'product_filter', 'filterId', 'productId');
+        return $this->belongsToMany(Product::class, 'product_filters', 'filterId', 'productId');
     }
 }

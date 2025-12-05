@@ -26,5 +26,9 @@ class DatabaseSeeder extends Seeder
             'hashed_password' => Hash::make('password'),
             'user_type' => 'customer', 
         ]);
+
+        $this->call([
+            ProductSeeder::class,
+        ]);
     }
 }

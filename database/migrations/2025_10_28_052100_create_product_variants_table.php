@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('value')->nullable();
             $table->unsignedInteger('count');
+            $table->string('sku')->nullable();
             $table->decimal("price", 8, 2);
+            $table->timestamps();
         });
     }
 

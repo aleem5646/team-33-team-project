@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('hashed_password');
+            $table->string('phone')->nullable();
             $table->enum('user_type', ['customer', 'admin'])->default('customer');
 
             //Fields don't need to be filled when created

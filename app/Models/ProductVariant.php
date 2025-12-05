@@ -18,9 +18,10 @@ class ProductVariant extends Model
         'name',
         'value',
         'price',
+        'sku',
     ];
 
-    public function getAttributes() : string {
+    public function getVariantAttributes() : string {
         /* Returns the attributes of the product variant like size, colour etc */
         return "{$this->name}: {$this->value}";
     }

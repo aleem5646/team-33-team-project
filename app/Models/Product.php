@@ -30,12 +30,12 @@ class Product extends Model
     {
         return $this->hasMany(ProductVariant::class, 'productId', 'productId');
     }
-    public function ProductReviews(): HasMany
+    public function reviews(): HasMany
     {
         return $this->hasMany(ProductReview::class, 'productId', 'productId');
     }
     public function filters(): BelongsToMany
     {
-        return $this->belongsToMany(Filter::class, 'product_filter', 'productId', 'filterId');
+        return $this->belongsToMany(Filter::class, 'product_filters', 'productId', 'filterId');
     }
 }

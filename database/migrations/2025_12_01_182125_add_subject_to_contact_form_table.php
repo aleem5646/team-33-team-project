@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('contact_form', function (Blueprint $table) {
+        Schema::table('contact_forms', function (Blueprint $table) {
             $table->string('subject')->after('email');
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('contact_form', function (Blueprint $table) {
+        Schema::table('contact_forms', function (Blueprint $table) {
             $table->dropColumn('subject');
         });
     }
