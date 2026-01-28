@@ -125,3 +125,11 @@ Route::get('/order-confirmation', [CheckoutController::class, 'confirmation'])->
 Route::get('/returns', [ReturnController::class, 'index'])->name('returns.form');
 Route::post('/returns/check-order', [ReturnController::class, 'checkOrder'])->name('returns.check_order');
 Route::post('/returns', [ReturnController::class, 'store'])->name('returns.submit');
+
+use App\Http\Controllers\WishlistController;
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/toggle/{product}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+    Route::post('/wishlist/remove/{product}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+});
