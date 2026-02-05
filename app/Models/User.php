@@ -57,6 +57,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return "{$this->address_line}, {$this->city}, {$this->postcode}, {$this->country}";
     }
 
+    public function isAdmin() : bool {
+        /* checks if the user is an admin */
+        return $this->user_role == "admin";
+    }
+
 // Relationships
     public function orders(): HasMany
     {
