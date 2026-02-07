@@ -1,5 +1,5 @@
 <footer class="bg-white dark:bg-primary-black border-t border-[#D9D9D9] block max-w-screen">
-    <div class="pt-8 pb-40 px-4 sm:px-6 lg:px-8 block sm:flex max-w-full gap-x-8">
+    <div class="pt-8 pb-40 px-4 sm:px-8 lg:px-16 xl:px-32 block sm:flex max-w-full gap-x-8">
         {{-- Logo and slogan on the left --}}
         <div class="px-4 sm:pl-0 sm:pr-4 flex-auto justify-items-start">
             <div class="block pb-6">
