@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@layer base {
+    * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    @custom-variant dark (&:where(.dark, .dark *));
+
+    a {
+        text-decoration: none;
+    }
+
+}

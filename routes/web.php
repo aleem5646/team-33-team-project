@@ -1,14 +1,16 @@
  <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Verified;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReturnController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\BasketController;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Auth\Events\Verified;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductListingController;
 
 
@@ -20,7 +22,7 @@ Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
 
-Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.submit');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
 Route::redirect('/home', '/');
 
 Route::get('/about', function () {
@@ -32,7 +34,7 @@ Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
 
-Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.submit');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
 
 Route::get('login', [AuthManager::class, 'login'])->name('login');
 Route::post('login', [AuthManager::class, 'loginPost'])->name('login.post');
@@ -93,21 +95,14 @@ Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admi
 # this route group
 Route::group(['middleware'=>['auth','verified']], function (){
     #this /profile thing is a placeholder for now obvs
-    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 });
 
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::post('/cart/add', [ProductController::class, 'addToCart'])->name('cart.add');
 Route::get("/product-detail", function () {
     return view("pages.product-detail");
 });
-
-
-
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-
-use App\Http\Controllers\BasketController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
@@ -118,8 +113,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
 Route::post('/checkout', [CheckoutController::class, 'confirmOrder'])->name('order.confirm');
-    Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 Route::get('/order-confirmation', [CheckoutController::class, 'confirmation'])->name('order.confirmation');
 
 Route::get('/returns', [ReturnController::class, 'index'])->name('returns.form');

@@ -4,9 +4,11 @@
     --color-brand-green: #3D480F;
     --color-brand-yellow: #DFFE73;
     --color-brand-teal: #73FED7;
-    --color-bg-grey: #DDE0DC;
     --color-cta: #5829D6;
-    --color-text: #3B3B3B;
+    --color-primary-grey: #DDE0DC;
+    --color-secondary-grey: #CECECE;
+    --color-tertiary-grey: #3B3B3B;
+    --color-primary-black: #181818;
 
     --radius-*: initial;
     --radius-xsm: 4px;
@@ -17,4 +19,6 @@
     --font-open-sans: "Open Sans";
     --font-poppins: Poppins;
     --font-geist-mono: "Geist Mono";
+    --font-satoshi: Satoshi;
+    --font-inter: Inter;
 }

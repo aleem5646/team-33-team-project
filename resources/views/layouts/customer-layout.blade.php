@@ -17,7 +17,7 @@
 <body class="m-0 p-0 min-h-screen flex flex-col font-sans dark:bg-gray-900 dark:text-white">
     @include('include.header')
 
-    <div class="flex-1 flex flex-col">
+    <div class="flex-1 flex flex-col py-40">
         @yield('content')
 
 
@@ -67,6 +67,6 @@
             verifyCode: "{{ route('code.verify') }}"
         };
     </script>
-    @include('include.footer')
+    <x-footer />
 </body>
 </html>
