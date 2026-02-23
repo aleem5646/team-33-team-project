@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
 use App\Http\Controllers\ProductListingController;
+use App\Http\Controllers\AdminProductFormController;
 
 
 Route::get('/', function () {
@@ -125,3 +126,10 @@ Route::get('/order-confirmation', [CheckoutController::class, 'confirmation'])->
 Route::get('/returns', [ReturnController::class, 'index'])->name('returns.form');
 Route::post('/returns/check-order', [ReturnController::class, 'checkOrder'])->name('returns.check_order');
 Route::post('/returns', [ReturnController::class, 'store'])->name('returns.submit');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/admin/products/add', [AdminProductFormController::class, 'create'])
+         ->name('admin.products.add');
+    Route::get('/admin/products/edit/{id}', [AdminProductFormController::class, 'edit'])
+         ->name('admin.products.edit');
+});
