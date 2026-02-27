@@ -62,7 +62,7 @@
     {{-- Legal Information --}}
     <div class="justify-center flex border-t border-[#D9D9D9] max-w-full">
         <div class="py-4 px-4">
-            <p>© 2026 Solara.</p>
+            <p class="text-black dark:text-white">© 2026 Solara.</p>
         </div>
         <div class="py-4 px-4">
             <ul class="text-gray-800 dark:text-gray-200 items-center list-none gap-4 flex">

@@ -7,8 +7,6 @@
         border: 0;
     }
 
-    @custom-variant dark (&:where(.dark, .dark *));
-
     a {
         text-decoration: none;
     }

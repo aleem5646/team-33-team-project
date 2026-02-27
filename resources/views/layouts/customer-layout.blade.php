@@ -1,31 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" class="overflow-y-scroll">
+<html data-theme="dark" lang="en" class="overflow-y-scroll">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script>
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
     @vite(["resources/css/app.css", "resources/js/app.js"])
     <title>@yield('title')</title>
 </head>
-<body class="m-0 p-0 min-h-screen flex flex-col font-sans dark:bg-gray-900 dark:text-white">
-    @include('include.header')
+<body class="font-sans">
+    @include('components.nav-bar')
 
-    <div class="flex-1 flex flex-col py-40">
+    <div class="py-40">
         @yield('content')
-
-
     </div>
 
 
 
-
+    <!--
     <div id="2fa-modal" class="hidden fixed inset-0 overflow-y-auto h-full w-full z-50 flex items-center justify-center pointer-events-none">
         <div class="relative p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800 pointer-events-auto">
             <div class="mt-3 text-center">
@@ -59,7 +50,7 @@
     </div>
 
 
-
+    
     <script>
         window.appRoutes = {
             login: "{{ route('login.post') }}",
@@ -67,6 +58,7 @@
             verifyCode: "{{ route('code.verify') }}"
         };
     </script>
+    -->
     <x-footer />
 </body>
 </html>
