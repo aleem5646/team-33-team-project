@@ -1,4 +1,4 @@
-<header class="max-w-screen justify-between relative flex items-center border-b border-[#D9D9D9] bg-white dark:bg-primary-black">
+<header class="max-w-screen justify-between relative flex items-center border-b border-[#D9D9D9] bg-white dark:bg-primary-black top-0 left-0">
     
     {{-- Logo --}}
     <div class="px-6 py-6 max-h-full items-center shrink-0">
