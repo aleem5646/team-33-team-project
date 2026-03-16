@@ -14,7 +14,7 @@ class AuthFeatureTest extends TestCase
 
     use RefreshDatabase;
     /**
-     *  tests homepage loads succesfully
+     * Test that the hoempage loads succesfully 
      */
 
     public function test_test_homepage_loads_successfully(): void
