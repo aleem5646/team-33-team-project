@@ -44,4 +44,14 @@ class AuthFeatureTest extends TestCase
         $response = $this->actingAs($user)->get('/');
         $response->assertStatus(200);
     }
+
+    /**
+     * Tests the guests can access the homepage without authentication
+     */
+    public function test_guest_can_access_homepage(): void{
+
+        $response = $this->get('/');
+        $response->assertStatus(200);
+
+    }
 }
