@@ -59,7 +59,7 @@ class AuthFeatureTest extends TestCase
     /**
      * ensures login page loads successfully
      */
-    
+
 public function test_login_page_loads(): void 
 
 {
@@ -67,5 +67,17 @@ public function test_login_page_loads(): void
     $response->assertStatus(200);
 }
 
+/**
+ * Ensure login fails with when incorrect credentials used
+ */
 
+public function test_user_cannot_login_with_invalid_credentials(): void
+{
+    $response = $this->post('/login', [
+        'email' => 'wrong@example.com',
+        'password'=> 'wrongpassword',
+
+    ]);
+    $response->assertSessionHasErrors();
+}
 }
