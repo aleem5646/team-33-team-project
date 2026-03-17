@@ -14,7 +14,7 @@ class AuthFeatureTest extends TestCase
 
     use RefreshDatabase;
     /**
-     * Test that the hoempage loads succesfully 
+     * Test that the homepage loads successfully 
      */
 
     public function test_test_homepage_loads_successfully(): void
@@ -48,6 +48,7 @@ class AuthFeatureTest extends TestCase
     /**
      * Tests the guests can access the homepage without authentication
      */
+
     public function test_guest_can_access_homepage(): void{
 
         $response = $this->get('/');
@@ -58,6 +59,7 @@ class AuthFeatureTest extends TestCase
     /**
      * ensures login page loads successfully
      */
+    
 public function test_login_page_loads(): void 
 
 {
