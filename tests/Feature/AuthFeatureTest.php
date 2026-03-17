@@ -54,4 +54,16 @@ class AuthFeatureTest extends TestCase
         $response->assertStatus(200);
 
     }
+
+    /**
+     * ensures login page loads successfully
+     */
+public function test_login_page_loads(): void 
+
+{
+    $response = $this->get('/login');
+    $response->assertStatus(200);
+}
+
+
 }
