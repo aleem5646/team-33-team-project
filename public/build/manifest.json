@@ -1,9 +1,8 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-ousWGmlE.css",
+    "file": "assets/app-BJ3bp9RF.css",
     "src": "resources/css/app.css",
     "isEntry": true,
-    "name": "app",
     "names": [
       "app.css"
     ]
@@ -49,7 +48,7 @@
     "src": "resources/fonts/satoshi/Satoshi-Bold.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-C-tmfbBF.js",
+    "file": "assets/app-B--nmwXj.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

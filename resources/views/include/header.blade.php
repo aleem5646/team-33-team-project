@@ -74,6 +74,12 @@
                         </button>
                         <div id="authProfileDropdown" 
                              class="hidden absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50 overflow-hidden">
+                            @if(auth()->user()->user_type === 'admin')
+                                <a href="{{ route('admin.dashboard') }}" 
+                                   class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
+                                    Admin Dashboard
+                                </a>
+                            @endif
                             <a href="{{ route('profile') }}" 
                                class="block px-4 py-2 text-black hover:bg-gray-100 whitespace-nowrap text-center border-b border-gray-200">
                                 My Profile
