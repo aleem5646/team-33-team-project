@@ -89,6 +89,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware(['auth', 'verified']);
+Route::get('admin-profile', [AdminController::class, 'profile'])->name('admin.profile')->middleware(['auth', 'verified']);
 # Add any routes that a logged in user can access in 
 # this route group
 Route::group(['middleware'=>['auth','verified']], function (){

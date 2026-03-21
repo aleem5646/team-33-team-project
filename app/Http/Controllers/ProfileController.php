@@ -10,6 +10,10 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        if ($user->user_type === 'admin') {
+            return redirect()->route('admin.profile');
+        }
         
         $orders = $user->orders()->with('items.productVariant.product')->orderBy('created_at', 'desc')->get(); 
         
