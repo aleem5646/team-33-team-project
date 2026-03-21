@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReturnController;
 use App\Http\Controllers\CheckoutController;
@@ -89,6 +90,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware(['auth', 'verified']);
+Route::get('admin/customers/{id}', [CustomerController::class, 'show'])->name('admin.customers.show')->middleware(['auth', 'verified']);
 # Add any routes that a logged in user can access in 
 # this route group
 Route::group(['middleware'=>['auth','verified']], function (){
