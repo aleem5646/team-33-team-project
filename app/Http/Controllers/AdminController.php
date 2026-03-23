@@ -39,4 +39,36 @@ class AdminController extends Controller
             'totalItemsSold'
         ));
     }
+
+    public function customers(Request $request)
+    {
+        $query = User::where('user_type', 'customer')
+            ->withCount('orders');
+
+        // Search by email
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('email', 'LIKE', "%{$search}%");
+        }
+
+        // Filter by newest, oldest, or most orders
+        $filter = $request->input('filter', 'newest');
+        if ($filter === 'newest') {
+            $query->orderBy('userId', 'desc'); 
+        } elseif ($filter === 'oldest') {
+            $query->orderBy('userId', 'asc');
+        } elseif ($filter === 'orders_desc') {
+            $query->orderBy('orders_count', 'desc');
+        }
+
+        $customers = $query->paginate(10);
+
+        return view('admin.customers', compact('customers', 'filter'));
+    }
+
+    public function showCustomer($id)
+    {
+        // Placeholder for customer details page
+        return redirect()->route('admin.dashboard')->with('info', 'Customer details page is coming soon.');
+    }
 }
