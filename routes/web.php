@@ -90,6 +90,8 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware(['auth', 'verified']);
 Route::get('admin/reports', [AdminController::class, 'reports'])->name('admin.reports')->middleware(['auth', 'verified']);
+Route::get('admin/customers', [AdminController::class, 'customers'])->name('admin.customers.index')->middleware(['auth', 'verified']);
+Route::get('admin/customers/{id}', [AdminController::class, 'showCustomer'])->name('admin.customers.show')->middleware(['auth', 'verified']);
 # Add any routes that a logged in user can access in 
 # this route group
 Route::group(['middleware'=>['auth','verified']], function (){
