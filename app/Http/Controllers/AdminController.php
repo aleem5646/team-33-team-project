@@ -46,7 +46,7 @@ class AdminController extends Controller
             ->withCount('orders');
 
         // Search by email
-        if ($request->has('search')) {
+        if ($request->has('search') && !empty($request->input('search'))) {
             $search = $request->input('search');
             $query->where('email', 'LIKE', "%{$search}%");
         }
@@ -64,6 +64,29 @@ class AdminController extends Controller
         $customers = $query->paginate(10);
 
         return view('admin.customers', compact('customers', 'filter'));
+    }
+
+    public function orders(Request $request)
+    {
+        $query = Order::query();
+
+        // Search by order ID
+        if ($request->has('search') && !empty($request->input('search'))) {
+            $search = $request->input('search');
+            $query->where('orderId', 'LIKE', "%{$search}%");
+        }
+
+        // Filter by newest, oldest
+        $filter = $request->input('filter', 'newest');
+        if ($filter === 'newest') {
+            $query->orderBy('created_at', 'desc');
+        } elseif ($filter === 'oldest') {
+            $query->orderBy('created_at', 'asc');
+        }
+
+        $orders = $query->paginate(10);
+
+        return view('admin.orders', compact('orders', 'filter'));
     }
 
     public function showCustomer($id)

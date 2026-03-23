@@ -56,7 +56,7 @@
             </a>
 
             <!-- ORDERS -->
-            <a href="#" class="admin-box bg-lime">
+            <a href="{{ route('admin.orders.index') }}" class="admin-box bg-lime">
                 <span class="admin-text">ORDERS</span>
             </a>
 
