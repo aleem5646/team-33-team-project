@@ -46,7 +46,7 @@
     <div class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <!-- PRODUCTS -->
-            <a href="{{ route('products.index') }}" class="admin-box bg-olive">
+            <a href="{{ route('admin.products.index') }}" class="admin-box bg-olive">
                 <span class="admin-text">PRODUCTS</span>
             </a>
 
