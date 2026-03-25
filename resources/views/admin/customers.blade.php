@@ -40,29 +40,37 @@
     </div>
 
     <!-- Customer Rows -->
-    <div class="space-y-4">
+    <div class="space-y-4 max-w-5xl mx-auto">
         <!-- Header Row -->
-        <div class="hidden md:grid grid-cols-3 gap-4 bg-[#9ba389] p-4 rounded-lg text-white font-bold uppercase text-center tracking-wider">
-            <div>Name</div>
-            <div>Orders</div>
-            <div>Join Date</div>
+        <div class="flex flex-row items-center bg-[#9ba389] p-4 rounded-lg text-white font-bold uppercase tracking-wider text-xs md:text-sm">
+            <div class="w-[35%] text-center">Customer Name</div>
+            <div class="w-[20%] text-center">Total Orders</div>
+            <div class="w-[25%] text-center">Join Date</div>
+            <div class="w-[20%] text-center">Actions</div>
         </div>
 
         @forelse($customers as $customer)
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-black/5 text-center">
+            <div class="flex flex-row items-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-black/5 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                 <!-- Name Column -->
-                <div class="text-lg font-bold text-gray-800 dark:text-white uppercase tracking-tight">
+                <div class="w-[35%] text-center flex justify-center text-sm md:text-lg font-bold text-gray-800 dark:text-white uppercase tracking-tight">
                     {{ $customer->getName() }}
                 </div>
 
                 <!-- Orders Column -->
-                <div class="text-gray-600 dark:text-gray-300 font-bold uppercase text-sm">
+                <div class="w-[20%] text-center flex justify-center text-gray-600 dark:text-gray-300 font-bold uppercase text-xs md:text-sm">
                     {{ $customer->orders_count }} orders
                 </div>
 
                 <!-- Join Date Column -->
-                <div class="text-gray-500 dark:text-gray-400 font-medium">
+                <div class="w-[25%] text-center flex justify-center text-gray-500 dark:text-gray-400 font-medium text-xs md:text-sm">
                     {{ $customer->email_verified_at ? $customer->email_verified_at->format('d/m/Y') : 'N/A' }}
+                </div>
+
+                <!-- Actions Column -->
+                <div class="w-[20%] text-center flex justify-center">
+                    <a href="{{ route('admin.customers.edit', $customer->userId) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-[10px] md:text-xs font-bold uppercase transition duration-300">
+                        Edit
+                    </a>
                 </div>
             </div>
         @empty

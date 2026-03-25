@@ -91,7 +91,20 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware(['auth', 'verified']);
 Route::get('admin/reports', [AdminController::class, 'reports'])->name('admin.reports')->middleware(['auth', 'verified']);
 Route::get('admin/customers', [AdminController::class, 'customers'])->name('admin.customers.index')->middleware(['auth', 'verified']);
+Route::get('admin/customers/{id}/edit', [AdminController::class, 'editCustomer'])->name('admin.customers.edit')->middleware(['auth', 'verified']);
+Route::put('admin/customers/{id}', [AdminController::class, 'updateCustomer'])->name('admin.customers.update')->middleware(['auth', 'verified']);
 Route::get('admin/orders', [AdminController::class, 'orders'])->name('admin.orders.index')->middleware(['auth', 'verified']);
+Route::get('admin/orders/{id}/edit', [AdminController::class, 'editOrder'])->name('admin.orders.edit')->middleware(['auth', 'verified']);
+Route::put('admin/orders/{id}', [AdminController::class, 'updateOrder'])->name('admin.orders.update')->middleware(['auth', 'verified']);
+
+// Product Management
+Route::get('admin/products', [AdminController::class, 'products'])->name('admin.products.index')->middleware(['auth', 'verified']);
+Route::get('admin/products/create', [AdminController::class, 'createProduct'])->name('admin.products.create')->middleware(['auth', 'verified']);
+Route::post('admin/products', [AdminController::class, 'storeProduct'])->name('admin.products.store')->middleware(['auth', 'verified']);
+Route::get('admin/products/{id}/edit', [AdminController::class, 'editProduct'])->name('admin.products.edit')->middleware(['auth', 'verified']);
+Route::put('admin/products/{id}', [AdminController::class, 'updateProduct'])->name('admin.products.update')->middleware(['auth', 'verified']);
+Route::delete('admin/products/{id}', [AdminController::class, 'destroyProduct'])->name('admin.products.destroy')->middleware(['auth', 'verified']);
+
 Route::get('admin/customers/{id}', [AdminController::class, 'showCustomer'])->name('admin.customers.show')->middleware(['auth', 'verified']);
 # Add any routes that a logged in user can access in 
 # this route group

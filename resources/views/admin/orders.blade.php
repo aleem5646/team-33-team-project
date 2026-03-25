@@ -42,34 +42,42 @@
     <div class="space-y-4">
         <!-- Header Row -->
         <div class="flex flex-row items-center bg-[#9ba389] p-4 rounded-lg text-white font-bold uppercase tracking-wider text-xs md:text-sm">
-            <div class="w-[20%] text-center">Order #</div>
-            <div class="w-[30%] text-center">Date</div>
-            <div class="w-[25%] text-center">Status</div>
-            <div class="w-[25%] text-center">Total</div>
+            <div class="w-[15%] text-center">Order #</div>
+            <div class="w-[25%] text-center">Date</div>
+            <div class="w-[20%] text-center">Status</div>
+            <div class="w-[20%] text-center">Total</div>
+            <div class="w-[20%] text-center">Actions</div>
         </div>
 
         @forelse($orders as $order)
             <div class="flex flex-row items-center justify-between bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-black/5 text-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                 <!-- Order Number Column -->
-                <div class="w-1/4 text-sm md:text-lg font-bold text-gray-800 dark:text-white uppercase tracking-tight">
+                <div class="w-[15%] text-sm md:text-lg font-bold text-gray-800 dark:text-white uppercase tracking-tight">
                     #{{ $order->orderId }}
                 </div>
 
                 <!-- Date of Order Column -->
-                <div class="w-1/4 text-gray-600 dark:text-gray-300 font-bold uppercase text-[10px] md:text-sm">
+                <div class="w-[25%] text-gray-600 dark:text-gray-300 font-bold uppercase text-[10px] md:text-sm">
                     {{ $order->created_at->format('d/m/Y') }}
                 </div>
 
                 <!-- Status Column -->
-                <div class="w-1/4 flex justify-center text-gray-500 dark:text-gray-400 font-medium uppercase text-[10px] md:text-sm">
+                <div class="w-[20%] flex justify-center text-gray-500 dark:text-gray-400 font-medium uppercase text-[10px] md:text-sm">
                     <span class="px-2 md:px-4 py-1 rounded-full text-[9px] md:text-xs font-bold inline-block {{ $order->status === 'completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                         {{ $order->status }}
                     </span>
                 </div>
 
                 <!-- Total Cost Column -->
-                <div class="w-1/4 text-gray-800 dark:text-white font-bold text-sm md:text-lg">
+                <div class="w-[20%] text-gray-800 dark:text-white font-bold text-sm md:text-lg">
                     £{{ number_format($order->total_price, 2) }}
+                </div>
+
+                <!-- Actions Column -->
+                <div class="w-[20%]">
+                    <a href="{{ route('admin.orders.edit', $order->orderId) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-xs font-bold uppercase transition duration-300">
+                        Edit
+                    </a>
                 </div>
             </div>
         @empty
