@@ -67,6 +67,13 @@
                     <label class="block mt-3 font-bold">Estimated Carbon Impact:</label>
                     <p>{{ $product->carbon_impact }}</p>
                 </div>
+    <!-- Wishlist Button -->
+<form action="{{ route('wishlist.toggle', $product->id) }}" method="POST" class="mt-3">
+    @csrf
+    <button type="submit" class="text-red-500 text-2xl hover:text-red-600">
+        <i class="fa fa-heart"></i>
+    </button>
+</form>
 
                 <!-- Add to Cart Button -->
                 <form id="cartForm" method="POST" action="{{ route('cart.add') }}">

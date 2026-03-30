@@ -42,6 +42,12 @@
             <!-- Right Side (Basket + Auth/Profile) -->
             <div class="flex-1 flex justify-end items-center space-x-4">
 
+            <!-- Wishlist -->
+<a href="{{ route('wishlist.index') }}" 
+   class="flex items-center text-black hover:text-gray-800 dark:text-white dark:hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium">
+    <i class="fa fa-heart text-xl text-red-500"></i>
+</a>
+
                 @auth
                 <!-- Basket -->
                 <a href="{{ route('basket.index') }}" 
@@ -59,7 +65,7 @@
                     BASKET
                 </a>
                 @endauth
-
+        
                 @auth
                     <!-- Authenticated User Dropdown -->
                     <div class="relative">
